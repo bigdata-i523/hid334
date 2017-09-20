@@ -20,3 +20,4 @@
 # Writing
 * 09/07/2017: Chose paper 1 topic
 * 09/16/2017: Chose paper 2 topic
+* 09/20/2017: Installed and explored JabRef
