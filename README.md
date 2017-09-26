@@ -9,11 +9,9 @@ owner:
 
 # Location
 
-```
 * Address: Metuchen, New Jersey
 * Latitude: 40.543160
 * Longitude: -74.363205
-```
 
 # Paper 1
 
@@ -24,7 +22,10 @@ paper1:
    hid:
    - 334
    title: AWS in support of Big Data Applications and Analytics
-   abstract: This paper will explore the logistics of Amazon Web Services and how companies are currently utilizing the service to process their big data needs. 
+   abstract: >
+       This paper will explore the logistics of Amazon Web Services
+       and how companies are currently utilizing the service to process
+       their big data needs.
    url: https://github.com/bigdata-i523/hid334/paper1/paper1.pdf
    type: latex
    status: in progress
