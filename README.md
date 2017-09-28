@@ -7,12 +7,6 @@ owner:
     url: https://github.com/bigdata-i523/hid334
 ```
 
-# Location
-
-* Address: Metuchen, New Jersey
-* Latitude: 40.543160
-* Longitude: -74.363205
-
 # Paper 1
 
 ```
