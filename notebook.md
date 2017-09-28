@@ -1,23 +1,30 @@
+# Meetings: 
+* 2017-09-11 Meeting: Online session (paper 1, LaTex, ShareLaTeX, Jabref)
+* 2017-09-18 Meeting: Online sessions (paper 1, LaTex, ShareLaTeX, Jabref, experiments)
+* 2017-09-23 Meeting: Office Hours (paper 1, how to run Makefile)
+
 # Logistic
-* 08/23/2017: Created GitHub, Chameleon and FuturesSystems Portal accounts
-* 08/29/2017: Read Organization and watched Piazza Introduction video
-* 09/11/2017 Meeting: Online session (paper 1, LaTex, ShareLaTeX, Jabref)
-* 09/18/2017 Meeting: Online sessions (paper 1, LaTex, ShareLaTeX, Jabref, experiments)
-* 09/23/2017 Meeting: Office Hours (paper 1, how to run Makefile)
+* 2017-08-23: Created GitHub, Chameleon and FuturesSystems Portal accounts
+* 2017-08-29: Read Organization and watched Piazza Introduction video
 
 # Theory
-* 09/13/2017: Watched 3.1.1.1 - 3.1.1.2
-* 09/14/2017: Watched 3.1.1.3 - 3.1.1.4
-* 09/15/2017: Watched 3.1.1.3 - 3.1.1.5
-* 09/16/2017: Watched 3.1.1.6 - 3.2.2.5
-* 09/18/2017: Watched 3.2.4.0 - 3.2.4.3
-* 09/19/2017: Watched 3.3.1.1 - 3.4.1.14
-* 09/20/2017: Watched 3.5.1.1 - 3.5.3.2
+* 2017-09-13: Watched 3.1.1.1 - 3.1.1.2
+* 2017-09-14: Watched 3.1.1.3 - 3.1.1.4
+* 2017-09-15: Watched 3.1.1.3 - 3.1.1.5
+* 2017-09-16: Watched 3.1.1.6 - 3.2.2.5
+* 2017-09-18: Watched 3.2.4.0 - 3.2.4.3
+* 2017-09-19: Watched 3.3.1.1 - 3.4.1.14
+* 2017-09-20: Watched 3.5.1.1 - 3.5.3.2
 
 # Practice
-* 09/07/2017: Ordered Raspberry Pi 3 
+* 2017-09-07: Ordered Raspberry Pi 3 
 
 # Writing
-* 09/07/2017: Chose paper 1 topic
-* 09/16/2017: Chose paper 2 topic
-* 09/20/2017: Installed and explored JabRef
+* 2017-09-07: Chose paper 1 topic
+* 2017-09-16: Chose paper 2 topic
+* 2017-09-20: Installed and explored JabRef
+
+# Location
+* Address: Metuchen, New Jersey
+* Latitude: 40.543160
+* Longitude: -74.363205
