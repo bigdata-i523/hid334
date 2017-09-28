@@ -1,4 +1,4 @@
-# Meetings: 
+# Meetings
 * 2017-09-11 Meeting: Online session (paper 1, LaTex, ShareLaTeX, Jabref)
 * 2017-09-18 Meeting: Online sessions (paper 1, LaTex, ShareLaTeX, Jabref, experiments)
 * 2017-09-23 Meeting: Office Hours (paper 1, how to run Makefile)
