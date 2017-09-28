@@ -34,7 +34,8 @@ paper2:
    hid:
    - 334
    title: Advancements in Drone Technology for the US Military
-   abstract: This paper will explore how the expansion of big data has affected US military capabilities through their drone program.
+   abstract: >
+       This paper will explore how the expansion of big data has affected US military capabilities through their drone program.
    url: https://github.com/bigdata-i523/hid334/paper2/paper2.pdf   
    type: latex
    status: in progress
