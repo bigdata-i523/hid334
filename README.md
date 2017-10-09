@@ -17,12 +17,23 @@ paper1:
    - 334
    title: AWS in support of Big Data Applications and Analytics
    abstract: >
-       This paper will explore the logistics of Amazon Web Services
-       and how companies are currently utilizing the service to process
-       their big data needs.
+       Executives are constantly looking for ways to find the 
+       pulse of their competitive landscape along with ways to 
+       gauge the sentiment among their customers. The emergence of 
+       the Big Data movement has given businesses the unique 
+       opportunity to gain perspective on these fronts, in 
+       addition to many others. Amazon Web Services has placed 
+       itself at the epicenter of this data movement and now 
+       offers tools that allows decision makers to quantify their 
+       businesses in ways that were previously computationally 
+       impossible or were  prohibitively expensive. As a result, 
+       with Amazon Web Services, companies now have the ability to 
+       gain deep insights into customer activity, which can be 
+       used as real-time feedback or guidance to make future 
+       experiences more personalized.
    url: https://github.com/bigdata-i523/hid334/paper1/paper1.pdf
    type: latex
-   status: in progress
+   status: 100%
    chapter: Technology
 ```
    
