@@ -2,6 +2,7 @@
 * 2017-09-11 Meeting: Online session (paper 1, LaTex, ShareLaTeX, Jabref)
 * 2017-09-18 Meeting: Online sessions (paper 1, LaTex, ShareLaTeX, Jabref, experiments)
 * 2017-09-23 Meeting: Office Hours (paper 1, how to run Makefile)
+* 2017-10-02 Meeting: Online session (yaml code)
 
 # Logistic
 * 2017-08-23: Created GitHub, Chameleon and FuturesSystems Portal accounts
@@ -22,11 +23,13 @@
 
 # Practice
 * 2017-09-07: Ordered Raspberry Pi 3 
+* 2017-09-28: Wrote Python script to transcribe lecture lengths
 
 # Writing
 * 2017-09-07: Chose paper 1 topic
 * 2017-09-16: Chose paper 2 topic
 * 2017-09-20: Installed and explored JabRef
+* 2017-10-08: Completed paper 1
 
 # Location
 * Address: Metuchen, New Jersey
