@@ -13,15 +13,15 @@ import statsmodels.api as sm
 http = urllib3.PoolManager()
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-main_site = 'http://fftoday.com/stats/playerstats.php?Season=2017&GameWeek=Season&PosID=20&LeagueID='
+main_site = 'http://fftoday.com/stats/playerstats.php?Season=2017&GameWeek=Season&PosID=30&LeagueID='
 
 response = http.request('GET', main_site)
 soup = BeautifulSoup(response.data,'lxml')
 
 
 page_type = [i.get_text() for i in soup.select('.pageheader')][0][:-11]
-
 df_headers = []
+print(page_type)
 
 #Stat table headers - the ones we care about are 'G','Att','Target','FPts/G'
 fields = soup.select('b')
@@ -73,6 +73,9 @@ summary['player']=df_players
 
 data = pd.DataFrame(summary)
 data['touches'] = [int(i)+int(j) for i,j in zip(data['att'], data['rec'])]
+
+#this is needed later because the OLS replaces the column with a constant
+data['touches_c'] = data['touches']
 data['fpt'] = data['fpt'].apply(pd.to_numeric)
 data['pos'] = page_type
 graph_data = data[['player','fpt','touches']]
@@ -90,8 +93,11 @@ g.set_axis_labels("Touches", "Fantasy Points")
 plt.title('Fantasy Football Production at ' + page_type)
 
 #Find out which players are outperforming or underperforming the most 
-model = sm.OLS(data.fpt, data.touches)
+
+data.con = sm.add_constant(data.touches)
+model = sm.OLS(data.fpt, data.con, data = data)
 results = model.fit()
+
 data['res'] = results.resid
 
 data = data.sort_values('res', ascending = False)
@@ -103,15 +109,35 @@ players_to_note = []
 allresid = [top5resid,bot5resid]
 for i in allresid: 
     for j in i:
-
         p = data[data.res == j].iloc[0,3] #Player Name
         x = data[data.res == j].iloc[0,5] #Touches
         y = data[data.res == j].iloc[0,1] #Points
+        r = data[data.res == j].iloc[0,8] #Residual
 
-        players_to_note.append((p,x,y))
+        players_to_note.append((p,x,y,r))
 
 #Add the results to the graph
 for i in players_to_note: 
     plt.annotate(i[0],xy=(i[1],i[2]),xytext=(i[1],i[2]))
+
     
+#TODO: Modify this if you want to display the player names to the right - need 
+#to figure out how to make it a relative reference rather than absolute
+# inc = 0
+
+# x_align = 75
+# y_align = 60
+
+# plt.text(x_align,y_align+15,'Bottom 5:',size = 'large', style = 'oblique')
+# for i in players_to_note[5:]: 
+#     plt.text(x_align,y_align+inc,i[0])
+#     inc += 3
+
+# y_align = y_align -5
+# plt.text(x_align,y_align,'Top 5:',size = 'large', style = 'oblique')
+# for i in players_to_note[0:5]: 
+#     plt.text(x_align,y_align-inc,i[0])
+#     inc -= 3
+
 plt.show()
+
