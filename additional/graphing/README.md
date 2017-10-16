@@ -5,7 +5,7 @@
 ** Combine the results to see how different the slope is between the different types of players
 ** Graph text box labeling as a relative reference and not absolute
 
-#####URLs for the different positions (included in the code as well):
+#### URLs for the different positions (included in the code as well):
 * RB: http://fftoday.com/stats/playerstats.php?Season=2017&GameWeek=Season&PosID=20&LeagueID=
 * WR: http://fftoday.com/stats/playerstats.php?Season=2017&GameWeek=Season&PosID=30&LeagueID=
 * TE: http://fftoday.com/stats/playerstats.php?Season=2017&GameWeek=Season&PosID=40&LeagueID=
