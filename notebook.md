@@ -24,6 +24,7 @@
 # Practice
 * 2017-09-07: Ordered Raspberry Pi 3 
 * 2017-09-28: Wrote Python script to transcribe lecture lengths
+* 2017-10-16: Wrote Python script that uses Seaborn with fantasy football
 
 # Writing
 * 2017-09-07: Chose paper 1 topic
