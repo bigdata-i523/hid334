@@ -14,7 +14,6 @@ main_site = 'http://fftoday.com/stats/playerstats.php?Season=2017&GameWeek=Seaso
 response = http.request('GET', main_site)
 soup = BeautifulSoup(response.data,'lxml')
 
-#look through to find the Theory section
 # player_lines = soup.findAll("td", {"class" : "sort1"})
 table = soup.find_all('table')[3]
 
