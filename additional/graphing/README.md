@@ -1,6 +1,7 @@
 ### Fantasy Football Production Visualization 
 * Mainly to familiarize myself with the Seaborn graphing library, this script will pull in the most recent fantasy football data and graph a player's production against their opportunities (touches). 
-* The data source is http://fftoday.com/
+* The data source is http://fftoday.com/ and the top 50 RBs and WRs are used
+* TODO: Combine the results to see how different the slope is between the different types of players
 
 #### Running Back (through Sunday night of Week 6): 
 
