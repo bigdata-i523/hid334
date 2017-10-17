@@ -13,7 +13,7 @@ import statsmodels.api as sm
 http = urllib3.PoolManager()
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-main_site = 'http://fftoday.com/stats/playerstats.php?Season=2017&GameWeek=Season&PosID=40&LeagueID='
+main_site = 'http://fftoday.com/stats/playerstats.php?Season=2017&GameWeek=Season&PosID=20&LeagueID='
 
 response = http.request('GET', main_site)
 soup = BeautifulSoup(response.data,'lxml')
@@ -138,10 +138,17 @@ for i in allresid:
 
         players_to_note.append((p,x,y,r))
 
+z = 0
 #Add the results to the graph
 for i in players_to_note: 
-    plt.annotate(i[0],xy=(i[1],i[2]),xytext=(i[1],i[2]), ha = 'center', va = 'bottom')
-
+    if z < resid_num:
+        clr = 'green'
+    else: 
+        clr = 'red'
+    
+    plt.annotate(i[0],xy=(i[1],i[2]),xytext=(i[1],i[2]), ha = 'center', va = 'bottom', color = clr)
+    g.ax_joint.scatter(i[1],i[2], color = clr)
+    z += 1
 #Find the highest scoring player 
 data = data.sort_values('fpt', ascending = False)
 tp = data.head(1) #tp = Top Player
@@ -149,24 +156,7 @@ tp_name = tp.iloc[0,3-TE_adj]
 tp_touches = tp.iloc[0,5-TE_adj]
 tp_pts = tp.iloc[0,1-TE_adj]
 
-plt.annotate(tp_name,xy=(tp_touches,tp_pts),xytext=(tp_touches,tp_pts),color = 'green', ha = 'center', va = 'bottom')
-
-#TODO: Modify this if you want to display the player names to the right - need 
-#to figure out how to make it a relative reference rather than absolute
-# inc = 0
-
-# x_align = 75
-# y_align = 60
-
-# plt.text(x_align,y_align+15,'Bottom 5:',size = 'large', style = 'oblique')
-# for i in players_to_note[5:]: 
-#     plt.text(x_align,y_align+inc,i[0])
-#     inc += 3
-
-# y_align = y_align -5
-# plt.text(x_align,y_align,'Top 5:',size = 'large', style = 'oblique')
-# for i in players_to_note[0:5]: 
-#     plt.text(x_align,y_align-inc,i[0])
-#     inc -= 3
+plt.annotate(tp_name,xy=(tp_touches,tp_pts),xytext=(tp_touches,tp_pts),color = 'darkblue', ha = 'center', va = 'bottom')
+g.ax_joint.scatter(tp_touches, tp_pts, color = 'darkblue')
 
 plt.show()
