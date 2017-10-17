@@ -22,7 +22,6 @@ for i in pairs:
     cats.append(pd.to_numeric(i[1]))
 
 df = pd.DataFrame({'Time':times, 'Category':cats})
-grouped = df.groupby('Category').sum()
 
 sns.set()
 g = sns.boxplot(x=cats,y=times)
@@ -30,8 +29,6 @@ g = sns.boxplot(x=cats,y=times)
 g.set_title('Experiment: Classification')
 g.set_xlabel("Category")
 g.set_ylabel("Time Spent for Corrections")
-plt.show()
-print(sums)
 
-sns.countplot(y = cats, orient = 'v')
+sns.swarmplot(x=cats,y=times, color = "0.25")
 plt.show()
