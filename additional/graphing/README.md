@@ -14,13 +14,13 @@
 
 #### Running Back (through Week 6): 
 
-![untitled_2](https://user-images.githubusercontent.com/31293179/31667552-c52b0a50-b31d-11e7-89cf-89914957e803.png)
+![untitled](https://user-images.githubusercontent.com/31293179/31685235-3c376f1c-b350-11e7-93ce-f5d5b612d24f.png)
 
 #### Wide Receiver (through Week 6): 
 
-![untitled](https://user-images.githubusercontent.com/31293179/31667493-9c5b81f4-b31d-11e7-9cef-e04135ba28b8.png)
+![untitled_2](https://user-images.githubusercontent.com/31293179/31685236-3c40a6ea-b350-11e7-98d1-941f18ef6ab2.png)
 
 
 #### Tight End (through Week 6): 
 
-![untitled3](https://user-images.githubusercontent.com/31293179/31669394-f72d0e72-b322-11e7-93cd-9a2ba04d2211.png)
+![untitled3](https://user-images.githubusercontent.com/31293179/31685237-3c4a4f92-b350-11e7-99bb-9dc05fc3465f.png)
