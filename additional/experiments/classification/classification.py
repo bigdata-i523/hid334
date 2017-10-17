@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 %matplotlib inline
 
 
-url = "https://raw.githubusercontent.com/bigdata-i523/hid334/master/additional/experiments/classification.txt"
+url = "https://raw.githubusercontent.com/bigdata-i523/hid334/master/additional/experiments/classification/classification.txt"
 data = requests.get(url).text
 
 data = re.split('\n|, ',data)
