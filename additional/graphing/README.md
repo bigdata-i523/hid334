@@ -17,4 +17,5 @@
 
 #### Wide Receiver (through Sunday night of Week 6): 
 
-![untitled_2](https://user-images.githubusercontent.com/31293179/31633506-9ff70318-b28e-11e7-8583-55d2d801dc51.png)
+![untitled](https://user-images.githubusercontent.com/31293179/31667493-9c5b81f4-b31d-11e7-9cef-e04135ba28b8.png)
+
