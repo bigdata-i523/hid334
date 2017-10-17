@@ -5,6 +5,7 @@
   * Combine the results to see how different the slope is between the different types of players
   * Graph text box labeling as a relative reference and not absolute
   * TEs don't have Att on site - add functionality for that
+  * Find a way to highlight individual data points with Seaborn
 
 #### URLs for the different positions (included in the code as well):
 * RB: http://fftoday.com/stats/playerstats.php?Season=2017&GameWeek=Season&PosID=20&LeagueID=
