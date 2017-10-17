@@ -2,6 +2,11 @@
 owner:
     hid: 334
     name: Peter Russell
+    firstname: Peter
+    lastname: Russell
+    longitude: 74.3632 W
+    latitude: 40.5432 S
+    city: Metuchen, NJ, U.S.A.
     url: https://github.com/bigdata-i523/hid334
 paper1:
     abstract: >
