@@ -18,7 +18,6 @@ main_site = 'http://fftoday.com/stats/playerstats.php?Season=2017&GameWeek=Seaso
 response = http.request('GET', main_site)
 soup = BeautifulSoup(response.data,'lxml')
 
-
 page_type = [i.get_text() for i in soup.select('.pageheader')][0][:-11]
 df_headers = []
 print(page_type)
@@ -29,11 +28,9 @@ fields = soup.select('b')
 for field in fields: 
 	df_headers.append(field.get_text()) 
 
-
 # Of the tables on the page, this is the one with the player data
 table = soup.find_all('table')[3]
 output = pd.DataFrame(columns = df_headers, index = ['Player'])
-
 
 # Read in the names of the players
 players = table.findAll("td", {"class" : "sort1","align":"LEFT"})
@@ -45,7 +42,6 @@ for player in players:
 	name = player.get_text().split(' ')
 	display_name = name[1] + ' ' +  name[2]
 	df_players.append(display_name)
-
 
 # Find the stats
 stats = table.findAll("td", {"class" : "sort1","align":"center"})
@@ -75,7 +71,6 @@ data = pd.DataFrame(summary)
 data['touches'] = [int(i)+int(j) for i,j in zip(data['att'], data['rec'])]
 
 #this is needed later because the OLS replaces the column with a constant
-data['touches_c'] = data['touches']
 data['fpt'] = data['fpt'].apply(pd.to_numeric)
 data['pos'] = page_type
 graph_data = data[['player','fpt','touches']]
@@ -101,26 +96,39 @@ results = model.fit()
 data['res'] = results.resid
 
 data = data.sort_values('res', ascending = False)
-top5resid = data.res.head(5)
-bot5resid = data.res.tail(5)
+
+#how many large residuals do you want to highlight?
+resid_num = 3
+
+top_resid = data.res.head(resid_num)
+bot_resid = data.res.tail(resid_num)
 
 players_to_note = []
 
-allresid = [top5resid,bot5resid]
+allresid = [top_resid,bot_resid]
 for i in allresid: 
     for j in i:
         p = data[data.res == j].iloc[0,3] #Player Name
         x = data[data.res == j].iloc[0,5] #Touches
         y = data[data.res == j].iloc[0,1] #Points
-        r = data[data.res == j].iloc[0,8] #Residual
+        r = data[data.res == j].iloc[0,7] #Residual
 
         players_to_note.append((p,x,y,r))
 
 #Add the results to the graph
 for i in players_to_note: 
-    plt.annotate(i[0],xy=(i[1],i[2]),xytext=(i[1],i[2]))
+    plt.annotate(i[0],xy=(i[1],i[2]),xytext=(i[1],i[2]), ha = 'center', va = 'bottom')
 
     
+#Find the highest scoring player 
+data = data.sort_values('fpt', ascending = False)
+tp = data.head(1) #tp = Top Player
+tp_name = tp.iloc[0,3]
+tp_touches = tp.iloc[0,5]
+tp_pts = tp.iloc[0,1]
+
+plt.annotate(tp_name,xy=(tp_touches,tp_pts),xytext=(tp_touches,tp_pts),color = 'green', ha = 'center', va = 'bottom')
+
 #TODO: Modify this if you want to display the player names to the right - need 
 #to figure out how to make it a relative reference rather than absolute
 # inc = 0
@@ -140,4 +148,3 @@ for i in players_to_note:
 #     inc -= 3
 
 plt.show()
-
