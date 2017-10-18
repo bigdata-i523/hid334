@@ -9,7 +9,7 @@ import numpy as np
 custom_user = 'Adam Gonzalez'
 #########################################################
 
-url = 'https://raw.githubusercontent.com/bigdata-i523/hid334/master/additional/experiments/timeline/timeline.csv'
+url = 'https://raw.githubusercontent.com/bigdata-i523/hid334/master/additional/experiments/timeline/timeline.txt'
 response = requests.get(url)
 url_data = response.text
 
