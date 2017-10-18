@@ -25,7 +25,6 @@ x = pd.DataFrame.from_dict({k:dict(v) for k,v in data_dict.items()}, orient='ind
 user_data = x[x.index ==custom_user]
 weeks = [i for i in x.columns.values]
 
-test = user_data.transpose()
 plt.scatter(weeks,[0 for i in range(len(user_data.transpose()))], s = user_data.transpose()*100)
 plt.xlim((min(weeks))-0.5, max(weeks)+0.5)
 plt.xlabel('Week Number')
