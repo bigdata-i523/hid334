@@ -8,6 +8,7 @@ import sys
 file_words = sys.argv[1]
 ex_file = sys.argv[2]
 
+#this assumes the data is in a similar format to the example - continuous text
 file = open(file_words, "r", encoding="utf-8-sig")
 exclude_file = open(ex_file, "r", encoding="utf-8-sig").read().split()
 
