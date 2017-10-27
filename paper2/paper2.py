@@ -5,11 +5,12 @@ from weather import Weather
 from datetime import datetime
 import calendar
 import webbrowser
+import time
 # from PIL import Image, ImageTK
 
 
 root = Tk()
-root.geometry("1250x1250")
+# root.geometry("1250x1250")
 root.title('Daily View')
 root.configure(bg = 'white')
 
@@ -67,59 +68,65 @@ Label(weather_root, text = forecasts[0].high() + ' / ' + forecasts[0].low(), fg 
 Label(weather_root, text = 'Sunrise: ' + astronomy.get('sunrise'), fg = 'slategrey', bg = weather_bg, font = ('Calibri',8)).grid(row=weather_start_row+4,column = 0,sticky=W)
 Label(weather_root, text = 'Sunset: ' + astronomy.get('sunset'), fg = 'slategrey', bg = weather_bg, font = ('Calibri',8)).grid(row=weather_start_row+5,column = 0,sticky=W)
 
+
+
+forecast_root = Frame(root, bg = 'blue').grid(row = 2, column =0, sticky = W)
 j = 0 
 for forecast in forecasts[1:6]:
 
-	Label(weather_root, text = 'Image Placehold',
-		fg = 'slategrey', bg = weather_bg, font = ('Calibri',8)).grid(row=2,column = 1+j, sticky = 'W')
+	Label(forecast_root, text = 'Image Placehold',
+		fg = 'slategrey', bg = weather_bg, font = ('Calibri',8)).grid(row=2,column = 1+j)
 
 	date_given = forecast.date()
 	weekday_from_date = calendar.day_name[datetime.strptime(date_given,'%d %b %Y').weekday()][:3]
 
-	Label(weather_root, text = weekday_from_date,
+	Label(forecast_root, text = weekday_from_date,
 		fg = 'slategrey', bg = weather_bg, font = ('Calibri',8)).grid(row=3,column = 1+j)
 
-	Label(weather_root, text = forecast.low() + '  /  ' + forecast.high(),
+	Label(forecast_root, text = forecast.low() + '  /  ' + forecast.high(),
 		fg = 'slategrey', bg = weather_bg, font = ('Calibri',8)).grid(row=4,column = 1+j)
 
 	j += 1 
 
 
 # SHOW THE TIME
-time_root = Frame(root, bg = 'blue').grid(row = 0, column = 7, rowspan = 4, sticky = NE)
-Label(time_root, text = datetime.now().strftime('%Y-%m-%d %H:%M:%S'), fg = 'slategrey', bg = weather_bg, font = ('Calibri',18)).grid(row=0,column = 7, rowspan = 4, sticky=NE)
+
+now = datetime.now()
+
+time_root = Frame(root, bg = 'blue').grid(row = 0, column = 7,sticky = NE)
+Label(time_root, text = now.strftime('%I:%M:%S'), fg = 'slategrey', bg = 'white', font = ('Calibri',12,'bold')).grid(row=0,column = 7,sticky=NE)
+Label(time_root, text = now.strftime('%B %d,%Y'), fg = 'slategrey', bg = 'white', font = ('Calibri',8)).grid(row=1,column = 7, sticky=NE)
 
 #####################################
 
-# url = 'http://feeds.feedburner.com/brainyquote/QUOTEBR'
-# response = requests.get(url)
-# soup = BeautifulSoup(response.content, features = 'xml')
-# items = soup.findAll('item')
-# for item in items: 
-# 		Label(quote_root, text = items[0].description.text + '  -' +items[0].title.text , fg = 'orange', bg = 'white', font = ('Calibri',11,'italic')).grid(row=0, column = 0, sticky= 'nw')
-
-
+quote_root = Frame(root, bg = 'blue').grid(row = 8, column = 0, columnspan = 8)
+url = 'http://feeds.feedburner.com/brainyquote/QUOTEBR'
+response = requests.get(url)
+soup = BeautifulSoup(response.content, features = 'xml')
+items = soup.findAll('item')
+for item in items: 
+		Label(quote_root, text = items[0].description.text + '  -' +items[0].title.text , fg = 'dodgerblue', bg = 'white', font = ('Calibri',11,'italic')).grid(row=8, column = 0, columnspan =8)
 
 # #####################################
 
-# # FILL IN THE TOP STORIES
+# FILL IN THE TOP STORIES
 
-# news_root = Frame(root, bg = 'green').grid(row = 10, column = 0,sticky = W+E+N+S)
+section_start = 10 
+news_root = Frame(root, bg = 'green').grid(row = section_start, column = 0, columnspan = 4,sticky = W)
 
-# section_start = 0
-# url = 'http://feeds.nytimes.com/nyt/rss/Business'
+url = 'http://feeds.nytimes.com/nyt/rss/Business'
 
-# response = requests.get(url)
-# soup = BeautifulSoup(response.content, features = 'xml')
+response = requests.get(url)
+soup = BeautifulSoup(response.content, features = 'xml')
 
-# items = soup.findAll('item')
-# Label(news_root, text = 'Business News', fg = 'navy', bg = 'white', font = ('Calibri',15,'bold')).grid(row=section_start,column = 0, sticky = 'W')
+items = soup.findAll('item')
+Label(news_root, text = 'Business News', fg = 'navy', bg = 'white', font = ('Calibri',15,'bold')).grid(row=section_start,column = 0, sticky = 'W')
 
-# i = section_start + 1
-# for item in items[:5]: 
-# 	i +=2
-# 	Label(news_root, text = item.title.text, fg = 'mediumblue', bg = 'white', font = ('Calibri',10)).grid(row = i, column = 0, sticky = 'W')
-# 	Label(news_root, text = item.description.text, fg = 'dimgray', bg = 'white', font = ('Calibri',8)).grid(row = i+1, column = 0, sticky = 'W')
+i = section_start + 1
+for item in items[:5]: 
+	i +=2
+	Label(news_root, text = item.title.text, fg = 'mediumblue', bg = 'white', font = ('Calibri',10)).grid(row = i, column = 0, sticky = 'W')
+	Label(news_root, text = item.description.text, fg = 'dimgray', bg = 'white', font = ('Calibri',8)).grid(row = i+1, column = 0, sticky = 'W')
 
 # #####################################
 
@@ -127,65 +134,80 @@ Label(time_root, text = datetime.now().strftime('%Y-%m-%d %H:%M:%S'), fg = 'slat
 
 # #####################################
 
-# url = 'http://rss.nytimes.com/services/xml/rss/nyt/Sports.xml'
+url = 'http://rss.nytimes.com/services/xml/rss/nyt/Sports.xml'
 
-# response = requests.get(url)
-# soup = BeautifulSoup(response.content, features = 'xml')
+section_start = 30
+sport_root = Frame(root, bg = 'green').grid(row = section_start, column = 0, columnspan = 4,sticky = W)
 
-# items = soup.findAll('item')
-# Label(sport_root, text = 'Sports News', fg = 'navy', bg = 'white', font = ('Calibri',15,'bold')).grid(row=section_start,column = 0, sticky = 'W')
+response = requests.get(url)
+soup = BeautifulSoup(response.content, features = 'xml')
 
-# i = section_start + 1
-# for item in items[:5]: 
-# 	i +=2
-# 	Label(sport_root, text = item.title.text, fg = 'mediumblue', bg = 'white', font = ('Calibri',10)).grid(row = i, column = 0, sticky = 'W')
-# 	Label(sport_root, text = item.description.text, fg = 'dimgray', bg = 'white', font = ('Calibri',8)).grid(row = i+1, column = 0, sticky = 'W')
+items = soup.findAll('item')
+Label(sport_root, text = 'Sports News', fg = 'navy', bg = 'white', font = ('Calibri',15,'bold')).grid(row=section_start,column = 0, sticky = 'W')
+
+i = section_start + 1
+for item in items[:5]: 
+	i +=2
+	Label(sport_root, text = item.title.text, fg = 'mediumblue', bg = 'white', font = ('Calibri',10)).grid(row = i, column = 0, sticky = 'W')
+	Label(sport_root, text = item.description.text, fg = 'dimgray', bg = 'white', font = ('Calibri',8)).grid(row = i+1, column = 0, sticky = 'W')
 
 # #######################################
 
-# url = 'https://www.scorespro.com/rss2/live-basketball.xml'
+url = 'https://www.scorespro.com/rss2/live-basketball.xml'
 
-# response = requests.get(url)
-# soup = BeautifulSoup(response.content, features = 'xml')
+section_start = 50
+scores_root = Frame(root, bg = 'green').grid(row = section_start, column = 0, columnspan = 4,sticky = W)
 
-# Label(scores_root, text = 'Live NBA Scores', fg = 'navy', bg = 'white', font = ('Calibri',15,'bold')).grid(row=section_start,column = 0, sticky = 'W')
+response = requests.get(url)
+soup = BeautifulSoup(response.content, features = 'xml')
 
-# items = soup.findAll('item')
+Label(scores_root, text = 'Live NBA Scores', fg = 'navy', bg = 'white', font = ('Calibri',15,'bold')).grid(row=section_start,column = 0, sticky = 'W')
 
-# i = 0
-# for item in items: 
-# 	if ('USA-NBA') in item.title.text:
-# 		x = item.title.text.replace('#Basketball #Livescore @ScoresPro: (USA-NBA) #','').replace('#', '')
-# 		Label(scores_root, text = x, fg = 'mediumblue', bg = 'white', font = ('Calibri',10)).grid(row = i+2, column = 0, sticky = 'W')
+items = soup.findAll('item')
 
-# if i == 0: 
-# 	Label(scores_root, text = 'No live NBA games currently', fg = 'darkgray', bg = 'white', font = ('Calibri',10,'italic')).grid(row = 1, column = 0, sticky = 'W')
+i = section_start
+for item in items: 
+	if ('USA-NBA') in item.title.text:
+		print('in here')
+		x = item.title.text.replace('#Basketball #Livescore @ScoresPro: (USA-NBA) #','').replace('#', '')
+		Label(scores_root, text = x, fg = 'mediumblue', bg = 'white', font = ('Calibri',10)).grid(row = section_start+i+2, column = 0, sticky = 'W')
+		i += 1
+
+if i == section_start:
+	print('made it here') 
+	Label(scores_root, text = 'No live NBA games currently', fg = 'darkgray', bg = 'white', font = ('Calibri',10,'italic')).grid(row = section_start + 1, column = 0, sticky = 'W')
 # ###########################################
 
-# url = 'https://www.scorespro.com/rss2/live-football.xml'
+url = 'https://www.scorespro.com/rss2/live-football.xml'
 
-# response = requests.get(url)
-# soup = BeautifulSoup(response.content, features = 'xml')
+football_root = Frame(root, bg = 'green').grid(row = section_start + i + 2, column = 0, columnspan = 4,sticky = W)
 
-# Label(football_root, text = 'Live Football Scores', fg = 'navy', bg = 'white', font = ('Calibri',15,'bold')).grid(row=section_start,column = 0, sticky = 'W')
+response = requests.get(url)
+soup = BeautifulSoup(response.content, features = 'xml')
 
-# items = soup.findAll('item')
+Label(football_root, text = 'Live Football Scores', fg = 'navy', bg = 'white', font = ('Calibri',15,'bold')).grid(row=section_start + i + 2,column = 0, sticky = 'W')
 
-# i = 0
-# for item in items: 
-# 	if (('USA-FBS') or ('USA-NFL') in item.title.text) and (item.description.text != 'Match Finished'):
+items = soup.findAll('item')
 
-# 		if ('USA-FBS') in item.title.text:
-# 			x = item.title.text.replace('American Football #Livescore @ScoresPro: (USA-FBS) #','').replace('#', '')
+section_start = section_start + i + 2
 
-# 		elif ('USA-NFL') in item.title.text:
-# 			x = item.title.text.replace('American Football #Livescore @ScoresPro: (USA-NFL) #','').replace('#', '')
+i = section_start
+for item in items: 
+	if (('USA-FBS') or ('USA-NFL') in item.title.text) and (item.description.text != 'Match Finished'):
+
+		if ('USA-FBS') in item.title.text:
+			x = item.title.text.replace('American Football #Livescore @ScoresPro: (USA-FBS) #','').replace('#', '')
+
+		elif ('USA-NFL') in item.title.text:
+			x = item.title.text.replace('American Football #Livescore @ScoresPro: (USA-NFL) #','').replace('#', '')
 			
-# 		Label(football_root, text = x, fg = 'mediumblue', bg = 'white', font = ('Calibri',10)).grid(row = i+2, column = 0, sticky = 'W')
-# 		i += 1 
+		Label(football_root, text = x, fg = 'mediumblue', bg = 'white', font = ('Calibri',10)).grid(row = i+2, column = 0, sticky = 'W')
+		i += 1 
+		print('in here')
 
-# if i == 0: 
-# 	Label(football_root, text = 'No live football games currently', fg = 'darkgray', bg = 'white', font = ('Calibri',10,'italic')).grid(row = 1, column = 0, sticky = 'W')
+if i == section_start: 
+	Label(football_root, text = 'No live football games currently', fg = 'darkgray', bg = 'white', font = ('Calibri',10,'italic')).grid(row = section_start+1, column = 0, sticky = 'W')
+
 # ###########################################
 # Label(time_root, text = 'Test', fg = 'darkgray', bg = 'white', font = ('Calibri',10,'italic')).grid(row = 0, column = 1, sticky = 'W')
 root.mainloop()
