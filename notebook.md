@@ -3,6 +3,7 @@
 * 2017-09-18 Meeting: Online sessions (paper 1, LaTex, ShareLaTeX, Jabref, experiments)
 * 2017-09-23 Meeting: Office Hours (paper 1, how to run Makefile)
 * 2017-10-02 Meeting: Online session (yaml code)
+* 2017-10-17 Meeting: Online session (paper 1 revisions, report.bib)
 
 # Logistic
 * 2017-08-23: Created GitHub, Chameleon and FuturesSystems Portal accounts
@@ -20,17 +21,21 @@
 * 2017-09-28: Watched 3.9.1.1 - 3.9.3.4
 * 2017-09-29: Watched 3.7.1.0 - 3.8.8.0, 3.10.2 - 3.10.17
 
-
 # Practice
 * 2017-09-07: Ordered Raspberry Pi 3 
 * 2017-09-28: Wrote Python script to transcribe lecture lengths
 * 2017-10-16: Wrote Python script that uses Seaborn with fantasy football
+* 2017-10-18: Completed Experiment: Timeline and Bubbles
+* 2017-10-23: Completed Experiment: Word Count
+* 2017-10-27: Worked on potential paper 2 substitute project for IoT (in unfinished GitHub folder) - TBD if pursued further
 
 # Writing
 * 2017-09-07: Chose paper 1 topic
 * 2017-09-16: Chose paper 2 topic
 * 2017-09-20: Installed and explored JabRef
 * 2017-10-08: Completed paper 1
+* 2017-10-12: Reviewed HID 342's paper on Piazza
+* 2017-10-25: Researched and received approval for final project
 
 # Location
 * Address: Metuchen, New Jersey
