@@ -15,7 +15,7 @@ paper1:
         customers. The emergence of  the Big Data movement has given businesses the
         unique  opportunity to gain perspective on these fronts, in  addition to many
         others. Amazon Web Services has placed  itself at the epicenter of this data
-        movement and now  offers tools that allows decision makers to quantify their  businesses
+        movement and now  offers tools that allows decision makers to quantify their businesses
         in ways that were previously computationally  impossible or were  prohibitively
         expensive. As a result,  with Amazon Web Services, companies now have the
         ability to  gain deep insights into customer activity, which can be  used
@@ -41,3 +41,20 @@ paper2:
     title: Advancements in Drone Technology for the US Military
     type: latex
     url: https://github.com/bigdata-i523/hid334/paper2/paper2.pdf
+project:
+    abstract: >
+        In the modern investing environment, a seismic shift is taking in place in terms of investing style. Previously, prior to the  
+        big data movement, qualitative macroeconomic investing was the dominant strategy as investors had to piece together anecdotal
+        evidence with concrete, but infrequent government data sets. These major economic releases tend to occur monthly, but could be
+        as infrequent as quarterly, as is the case with gross domestic product. However, with services such as GDELT, investors can now
+        insights at a much more granular level to gauge sentiment. GDELT, short for Global Database of Events, Language, and Tone,
+        collects news stories from around the world and publishes a 250,000 row daily file for analysis. The utilization and
+        visualization of this data as it relates to investing will be primary theme researched.
+    author:
+        - Peter Russell
+    hid:
+        - 334
+    status: in progress
+    title: Sentiment based Macroeconomic Investing using GDELT
+    type: latex
+    url: https://github.com/bigdata-i523/hid334/project/project.pdf
