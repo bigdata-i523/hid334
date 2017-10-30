@@ -28,6 +28,7 @@
 * 2017-10-18: Completed Experiment: Timeline and Bubbles
 * 2017-10-23: Completed Experiment: Word Count
 * 2017-10-27: Worked on potential paper 2 substitute project for IoT (in unfinished GitHub folder) - TBD if pursued further
+* 2017-10-28: Modified using IoT project with Tkinter - put on hold for paper 2 - possible project instead
 
 # Writing
 * 2017-09-07: Chose paper 1 topic
@@ -36,6 +37,8 @@
 * 2017-10-08: Completed paper 1
 * 2017-10-12: Reviewed HID 342's paper on Piazza
 * 2017-10-25: Researched and received approval for final project
+* 2017-10-29: Researched and organized outline for paper 2 - began writing introduction
+* 2017-10-30: Added additional case studies to paper 2 
 
 # Location
 * Address: Metuchen, New Jersey
