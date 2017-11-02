@@ -25,7 +25,7 @@ paper1:
     chapter: Technology
     hid:
         - 334
-    status: 10/28/2017
+    status: Oct 28 17 100%
     title: AWS in support of Big Data Applications and Analytics
     type: latex
     url: https://github.com/bigdata-i523/hid334/paper1/paper1.pdf
@@ -37,7 +37,7 @@ paper2:
         - Peter Russell
     hid:
         - 334
-    status: in progress
+    status: 90%
     title: Advancements in Drone Technology for the US Military
     type: latex
     url: https://github.com/bigdata-i523/hid334/paper2/paper2.pdf
