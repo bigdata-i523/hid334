@@ -4,6 +4,7 @@
 * 2017-09-23 Meeting: Office Hours (paper 1, how to run Makefile)
 * 2017-10-02 Meeting: Online session (yaml code)
 * 2017-10-17 Meeting: Online session (paper 1 revisions, report.bib)
+* 2017-11-06 Meeting: Online session to discuss paper compilation via commandline in Windows
 * 2017-11-13 Meeting: Online session (advice from Juliette on project)
 
 # Logistic
