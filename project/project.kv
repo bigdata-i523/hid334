@@ -1,34 +1,242 @@
 #:kivy 1.10.0
+<NewsLabel@Label>:
+	color: [0,0,0,1]
+
+
 <WeatherWidget>:
+    canvas.before:
+        Color:
+            rgba: 1, 1, 1, 1
+		Rectangle:
+			pos: self.pos
+			size: self.size
     cols: 1
     BoxLayout:
         size_hint_y: None
-        Label:
-            text: root.printing_test()
-            size_hint_x: 1
-        Label:
-            text: 'Tomorrow'
-            size_hint_x: 0.25
-        Label:
-            text: 'T+2'
-            size_hint_x: 0.25
-        Label:
-            text: 'T+3'
-            size_hint_x: 0.25
-        Label:
-            text: 'T+4'
-            size_hint_x: 0.25
-        Label:
-            text: 'T+5'
-            size_hint_x: 0.25
         BoxLayout:
+            size_hint_x: 1
+            size_hint_y: 2
+            orientation: "vertical"
+            Image: 
+            	source: 'Code32.png' #This needs to be a dictionary
+            	keep_ratio: False
+            	halign: 'center'
             Label:
-                text: root.TimeHours + ':' + root.TimeMinutes
-                size_hint_x: 1
-                font_size: 30
+                text: root.current_temperature()[:3] 
                 bold: True
-    BoxLayout:
-        Label: 
-            text: 'Another area'
-        Label: 
-            text: 'Here too'
+                font_size: 40
+                color: [0,0,0,1]
+			Label:
+                text: root.high_low_temp(0)
+                font_size: 15
+                color: [1,255,1,1]
+            Label:
+                text: root.get_location()
+                font_size: 15
+                color: [1,1,1,1]
+                bold: True
+			Label:
+                text: root.sunrise()
+                font_size: 10
+                color: [0,0,0,1]
+			Label:
+                text: root.sunset()
+                font_size: 10
+                color: [0,0,0,1]
+	    BoxLayout:
+	    	orientation: 'vertical'
+	    	size_hint_y: 0.75
+			Label: 
+	        	text: root.forecast_day(1)
+	        	color: 159, 171, 183, 1
+	    	Image: 
+	    		source: 'Code32.png'
+			Label: 
+	        	text: root.high_low_temp(1)
+	            font_size: 12
+	            color: 61, 106, 148, 1
+
+	    BoxLayout:
+	    	orientation: 'vertical'
+	    	size_hint_y: 0.75
+			Label: 
+	        	text: root.forecast_day(2)
+	        	color: 159, 171, 183, 1
+	    	Image: 
+	    		source: 'Code32.png'
+	        Label: 
+	        	text: root.high_low_temp(2)
+	            font_size: 12
+	            color: 61, 106, 148, 1
+	    BoxLayout:
+	    	orientation: 'vertical'
+	    	size_hint_y: 0.75
+			Label: 
+	        	text: root.forecast_day(3)
+	        	color: 159, 171, 183, 1
+	    	Image: 
+	    		source: 'Code32.png'
+	        Label: 
+	        	text: root.high_low_temp(3)
+	            font_size: 12
+	            color: 61, 106, 148, 1
+	    BoxLayout:
+	    	orientation: 'vertical'
+	    	size_hint_y: 0.75
+			Label: 
+	        	text: root.forecast_day(4)
+	        	color: 159, 171, 183, 1
+	    	Image: 
+	    		source: 'Code32.png'
+	        Label: 
+	        	text: root.high_low_temp(4)
+	            font_size: 12
+	            color: 61, 106, 148, 1
+	    BoxLayout:
+	    	orientation: 'vertical'
+	    	size_hint_y: 0.75
+			Label: 
+	        	text: root.forecast_day(5)
+	        	color: 159, 171, 183, 1
+	    	Image: 
+	    		source: 'Code32.png'
+	        Label: 
+	        	text: root.high_low_temp(5)
+	            font_size: 12
+	            color: 61, 106, 148, 1
+		BoxLayout:
+			size_hint_y: None
+			BoxLayout:
+	        	orientation: 'vertical'
+	            Label:
+	                text: root.TimeHours + ':' + root.TimeMinutes
+	                size_hint_x: 1
+	                font_size: 40
+	                size: self.size
+	                bold: True
+	                halign: 'center'
+	                color: [0,0,0,1]
+	            Label:
+	                text: root.current_date()
+	                size_hint_x: 1
+	                font_size: 15
+	                bold: True
+	                halign: 'center'
+	                color: [0,0,0,1]
+	BoxLayout:
+		orientation: 'vertical'
+		size_hint_y: None
+		Label: 
+			text: root.quote_of_the_day()
+			color: [0,0,0,1]
+			italic: True
+			size_hint_y: .05
+			font_size: 10
+
+	BoxLayout:
+		orientation: 'vertical'
+		size_hint_y: 1
+		BoxLayout:
+			orientation: 'vertical'
+			NewsLabel: 
+				text: 'Top News'
+				text_size: self.size
+				halign: 'left'
+				font_size: 20
+				bold: True
+			NewsLabel: 
+				text: '    ' + root.top_world_news_title(0)
+				text_size: self.size
+				halign: 'left'
+				font_size: 12
+				bold: True
+			NewsLabel: 
+				text: '    ' + root.top_world_news_story(0)
+				text_size: self.size
+				halign: 'left'
+				font_size: 11
+			
+			NewsLabel: 
+				text: '    ' + root.top_world_news_title(1)
+				text_size: self.size
+				halign: 'left'
+				font_size: 12
+				bold: True
+				max_lines: 1
+			NewsLabel: 
+				text: '    ' + root.top_world_news_story(1)
+				text_size: self.size
+				halign: 'left'
+				font_size: 11
+
+			NewsLabel: 
+				text: '    ' + root.top_world_news_title(2)
+				text_size: self.size
+				halign: 'left'
+				font_size: 12
+				bold: True
+			NewsLabel: 
+				text: '    ' + root.top_world_news_story(2)
+				text_size: self.size
+				halign: 'left'
+				font_size: 11
+
+
+			NewsLabel: 
+				text: '    ' + root.top_world_news_title(3)
+				text_size: self.size
+				halign: 'left'
+				font_size: 12
+				bold: True
+			NewsLabel: 
+				text: '    ' + root.top_world_news_story(3)
+				text_size: self.size
+				halign: 'left'
+				font_size: 11
+
+			NewsLabel: 
+				text: '    ' + root.top_world_news_title(4)
+				text_size: self.size
+				halign: 'left'
+				font_size: 12
+				bold: True
+			NewsLabel: 
+				text: '    ' + root.top_world_news_story(4)
+				text_size: self.size
+				halign: 'left'
+				font_size: 11
+
+			NewsLabel: 
+				text: '    ' + root.top_world_news_title(5)
+				text_size: self.size
+				halign: 'left'
+				font_size: 12
+				bold: True
+			NewsLabel: 
+				text: '    ' + root.top_world_news_story(5)
+				text_size: self.size
+				halign: 'left'
+				font_size: 11
+		BoxLayout:
+			orientation: 'vertical'
+			size_hint_y: 1
+			BoxLayout:
+				orientation: 'vertical'
+				NewsLabel: 
+					text: 'Top Business News'
+					text_size: self.size
+					halign: 'left'
+					font_size: 20
+					bold: True
+				NewsLabel: 
+					text: '    ' + root.top_business_title(0)
+					text_size: self.size
+					halign: 'left'
+					font_size: 12
+					bold: True
+				NewsLabel: 
+					text: '    ' + root.top_business_story(0)
+					text_size: self.size
+					halign: 'left'
+					font_size: 11
+
