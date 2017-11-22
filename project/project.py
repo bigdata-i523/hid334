@@ -10,6 +10,7 @@ from weather import Weather
 import requests
 from bs4 import BeautifulSoup 
 import webbrowser
+from rtstock.stock import Stock
 
 # In the kv file, everything to the right of the colon is pure python
 # for loading python module in kv file, use format of #:  import keyword module_name
@@ -21,6 +22,9 @@ condition = location.condition()
 forecasts = location.forecast()
 astronomy = location.astronomy()
 
+all_stocks = [Stock('AAPL'),Stock('AMZN'), Stock('GOOG'), Stock('NFLX'), Stock('FB'), Stock('TSLA')]
+
+
 class WeatherWidget(GridLayout):
 
 	TimeSeconds = StringProperty('')
@@ -31,7 +35,7 @@ class WeatherWidget(GridLayout):
 		return location.title().replace('Yahoo! Weather - ','')
 
 	def current_temperature(self):
-		return condition['temp'] + '° ' +condition['text']
+		return condition['temp'] + '° ' + condition['text']
 
 	def current_date(self):
 		return time.strftime('%a %b %d')
@@ -75,7 +79,6 @@ class WeatherWidget(GridLayout):
 
 	def top_world_news_story(self, story_num):
 		items = self.pull_site('http://www.wsj.com/xml/rss/3_7085.xml')
-		print(items[0])
 		return items[story_num].description.text
 
 	def top_business_title(self, story_num):
@@ -84,8 +87,22 @@ class WeatherWidget(GridLayout):
 
 	def top_business_story(self, story_num):
 		items = self.pull_site('http://www.wsj.com/xml/rss/3_7014.xml')
-		print(items[0])
 		return items[story_num].description.text
+
+	def stock_symbol(self, stock):
+		return Stock(stock).get_ticker()
+
+	def stock_last_price(self, stock):
+		return Stock(stock).get_latest_price()
+	
+	def transit_alerts(self, alert_num):
+		items = self.pull_site('http://www.njtransit.com/rss/RailAdvisories_feed.xml')
+		relevant_alerts = []
+		for item in items:
+			if 'NEC' in item.link.text:
+				relevant_alerts.append(item.description.text)
+		print(relevant_alerts)
+		return relevant_alerts[alert_num]
 
 class DailyViewApp(App):
     def build(self):
