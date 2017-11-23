@@ -1,7 +1,6 @@
 from kivy.app import App
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.scrollview import ScrollView
-
 from kivy.clock import Clock
 from kivy.properties import StringProperty
 from random import *
@@ -13,6 +12,7 @@ import requests
 from bs4 import BeautifulSoup 
 import webbrowser
 from rtstock.stock import Stock
+from weathercodes import codes, codes_des
 
 # In the kv file, everything to the right of the colon is pure python
 # for loading python module in kv file, use format of #:  import keyword module_name
@@ -25,6 +25,10 @@ forecasts = location.forecast()
 astronomy = location.astronomy()
 
 all_stocks = [Stock('AAPL'),Stock('AMZN'), Stock('GOOG'), Stock('NFLX'), Stock('FB'), Stock('TSLA')]
+
+for forecast in forecasts:
+	print(forecast.text)
+	print(dir(forecast))
 
 
 class WeatherWidget(GridLayout):
@@ -42,12 +46,26 @@ class WeatherWidget(GridLayout):
 	def current_date(self):
 		return time.strftime('%a %b %d')
 
+	def get_weather_image(self):
+		all_codes = codes
+		code_from_yahoo = int(condition['code'])
+		mapped_image = all_codes.get(code_from_yahoo)[1]
+		return mapped_image
+
+	def forecast_image(self, day_num):
+		all_codes = codes_des
+		if all_codes.get(forecasts[day_num].text().lower()) is None:  
+			return 'unavailable.png'
+		return all_codes.get(forecasts[day_num].text().lower())
 	# day_num is an integer where 0 = today
 	def high_low_temp(self, day_num):
 		return forecasts[day_num].low() + 'º / ' + forecasts[day_num].high() + 'º '
 
 	def forecast_day(self, day_num):
 		return datetime.strptime(forecasts[day_num].date(), '%d %b %Y').strftime('%a')
+
+	def forecast_des(self, day_num):
+		return forecasts[day_num].text()
 
 	def get_location(self):
 		return location.title().replace('Yahoo! Weather - ','')
@@ -73,7 +91,7 @@ class WeatherWidget(GridLayout):
 
 	def pull_site_sorted(self, site):
 		items = self.pull_site(site)
-		stories = [(item.pubDate.text, item.title.text, item.description.text) for item in items]
+		stories = [(item.pubDate.text, item.title.text, item.description.text, item.link.text) for item in items]
 		stories.sort()
 		stories.reverse()
 		return stories
@@ -98,19 +116,37 @@ class WeatherWidget(GridLayout):
 		items = self.pull_site_sorted('http://www.wsj.com/xml/rss/3_7014.xml')
 		return items[story_num][2]
 
+	def top_business(self, story_num, field):
+		items = self.pull_site_sorted('http://www.wsj.com/xml/rss/3_7014.xml')
+		if field == 'title':
+			return items[story_num][1]
+		elif field == 'des':
+			return items[story_num][2]
+		else: 
+			return items[story_num][3]
+
 	def stock_symbol(self, stock):
 		return Stock(stock).get_ticker()
 
 	def stock_last_price(self, stock):
 		return Stock(stock).get_latest_price()
 	
-	def transit_alerts(self, alert_num):
+	def transit_alerts(self):
 		items = self.pull_site('http://www.njtransit.com/rss/RailAdvisories_feed.xml')
 		relevant_alerts = []
 		for item in items:
 			if 'NEC' in item.link.text:
 				relevant_alerts.append(item.description.text)
-		return relevant_alerts[alert_num]
+		return '\n-'.join(relevant_alerts)
+
+	def nba_scores(self):
+		items = self.pull_site('https://www.scorespro.com/rss2/live-basketball.xml')
+		all_games = []
+		for item in items:
+			if ('USA-NBA') in item.title.text:
+				all_games.append(item.title.text.replace('#Basketball #Livescore @ScoresPro: (USA-NBA) #','').replace('#', ''))
+		print(all_games)
+		return '\n'.join(all_games)
 
 class DailyViewApp(App):
     def build(self):
