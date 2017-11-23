@@ -1,5 +1,7 @@
 from kivy.app import App
 from kivy.uix.gridlayout import GridLayout
+from kivy.uix.scrollview import ScrollView
+
 from kivy.clock import Clock
 from kivy.properties import StringProperty
 from random import *
@@ -69,25 +71,32 @@ class WeatherWidget(GridLayout):
 		items = soup.findAll('item')
 		return items
 
+	def pull_site_sorted(self, site):
+		items = self.pull_site(site)
+		stories = [(item.pubDate.text, item.title.text, item.description.text) for item in items]
+		stories.sort()
+		stories.reverse()
+		return stories
+
 	def quote_of_the_day(self):
 		items = self.pull_site('http://feeds.feedburner.com/brainyquote/QUOTEBR')
 		return items[0].description.text + '  -' +items[0].title.text
 
 	def top_world_news_title(self, story_num):
-		items = self.pull_site('http://www.wsj.com/xml/rss/3_7085.xml')
-		return items[story_num].title.text
+		items = self.pull_site_sorted('http://www.wsj.com/xml/rss/3_7085.xml')
+		return items[story_num][1]
 
 	def top_world_news_story(self, story_num):
-		items = self.pull_site('http://www.wsj.com/xml/rss/3_7085.xml')
-		return items[story_num].description.text
+		items = self.pull_site_sorted('http://www.wsj.com/xml/rss/3_7085.xml')
+		return items[story_num][2]
 
 	def top_business_title(self, story_num):
-		items = self.pull_site('http://www.wsj.com/xml/rss/3_7014.xml')
-		return items[story_num].title.text
+		items = self.pull_site_sorted('http://www.wsj.com/xml/rss/3_7014.xml')
+		return items[story_num][1]
 
 	def top_business_story(self, story_num):
-		items = self.pull_site('http://www.wsj.com/xml/rss/3_7014.xml')
-		return items[story_num].description.text
+		items = self.pull_site_sorted('http://www.wsj.com/xml/rss/3_7014.xml')
+		return items[story_num][2]
 
 	def stock_symbol(self, stock):
 		return Stock(stock).get_ticker()
@@ -101,7 +110,6 @@ class WeatherWidget(GridLayout):
 		for item in items:
 			if 'NEC' in item.link.text:
 				relevant_alerts.append(item.description.text)
-		print(relevant_alerts)
 		return relevant_alerts[alert_num]
 
 class DailyViewApp(App):
