@@ -45,21 +45,19 @@
 
 <TransitAlert@Label>:
 	color: [0.576, 0.051, 0.192,1]
-	font_size: 9
+	font_size: 12
 	size_hint_y: None
     text_size: self.width, None
     height: self.texture_size[1]
     valign: 'top'
 
-<Scores@Button>:
-	color: [0.576, 0.051, 0.192,1]
+<Scores@Label>:
+	color: [0, 0.125, 0.38,1]
 	font_size: 12
 	size_hint_y: None
     text_size: self.width, None
     height: self.texture_size[1]
 	
-	
-
 <WeatherWidget>:
     canvas.before:
         Color:
@@ -181,21 +179,29 @@
 			BoxLayout:
 				orientation: 'vertical'	
 				NewsLabelTitle: 
-					text: root.top_world_news_title(0)
+					text: '[ref=' + root.top_world(0,'title') + ']' + root.top_world(0,'title') + '[/ref]' 
+					on_ref_press: 
+						webbrowser.open(root.top_world(0,'link'))
 				NewsLabelStory: 
-					text: root.top_world_news_story(0)
+					text: root.top_world(0,'des')
 				NewsLabelTitle: 
-					text: root.top_world_news_title(1)
+					text: '[ref=' + root.top_world(0,'title') + ']' + root.top_world(1,'title') + '[/ref]' 
+					on_ref_press: 
+						webbrowser.open(root.top_world(1,'link'))
 				NewsLabelStory: 
-					text: root.top_world_news_story(1)
+					text: root.top_world(1,'des')
 				NewsLabelTitle: 
-					text: root.top_world_news_title(2)
+					text: '[ref=' + root.top_world(2,'title') + ']' + root.top_world(2,'title') + '[/ref]' 
+					on_ref_press: 
+						webbrowser.open(root.top_world(2,'link'))
 				NewsLabelStory: 
-					text: root.top_world_news_story(2)
+					text: root.top_world(2,'des')
 				NewsLabelTitle: 
-					text: root.top_world_news_title(3)
+					text: '[ref=' + root.top_world(3,'title') + ']' + root.top_world(3,'title') + '[/ref]' 
+					on_ref_press: 
+						webbrowser.open(root.top_world(3,'link'))
 				NewsLabelStory: 
-					text: root.top_world_news_story(3)
+					text: root.top_world(3,'des')
 		BoxLayout:
 			orientation: 'vertical'
 			NewsLabelTitle: 
@@ -232,4 +238,6 @@
 		BoxLayout:
 			orientation: 'vertical'
 			Scores:
-				text: root.nba_scores()
+				text: root.nba_scores() + '\n'
+			Scores: 
+				text: root.nfl_scores()
