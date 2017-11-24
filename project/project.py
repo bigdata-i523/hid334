@@ -91,9 +91,10 @@ class WeatherWidget(GridLayout):
 
 	def pull_site_sorted(self, site):
 		items = self.pull_site(site)
-		stories = [(item.pubDate.text, item.title.text, item.description.text, item.link.text) for item in items]
-		stories.sort()
-		stories.reverse()
+		stories = [(datetime.strptime(item.pubDate.text, '%a, %d %b %Y %H:%M:%S EST'), 
+					item.title.text, 
+					item.description.text, item.link.text) for item in items]
+		stories.sort(key = lambda tup: tup[0], reverse = True)
 		return stories
 
 	def quote_of_the_day(self):
@@ -107,6 +108,15 @@ class WeatherWidget(GridLayout):
 	def top_world_news_story(self, story_num):
 		items = self.pull_site_sorted('http://www.wsj.com/xml/rss/3_7085.xml')
 		return items[story_num][2]
+
+	def top_world(self, story_num, field):
+		items = self.pull_site_sorted('http://www.wsj.com/xml/rss/3_7085.xml')
+		if field == 'title':
+			return items[story_num][1]
+		elif field == 'des':
+			return items[story_num][2]
+		else: 
+			return items[story_num][3]
 
 	def top_business_title(self, story_num):
 		items = self.pull_site_sorted('http://www.wsj.com/xml/rss/3_7014.xml')
@@ -125,11 +135,11 @@ class WeatherWidget(GridLayout):
 		else: 
 			return items[story_num][3]
 
-	def stock_symbol(self, stock):
-		return Stock(stock).get_ticker()
+	# def stock_symbol(self, stock):
+	# 	return Stock(stock).get_ticker()
 
-	def stock_last_price(self, stock):
-		return Stock(stock).get_latest_price()
+	# def stock_last_price(self, stock):
+	# 	return Stock(stock).get_latest_price()
 	
 	def transit_alerts(self):
 		items = self.pull_site('http://www.njtransit.com/rss/RailAdvisories_feed.xml')
@@ -146,6 +156,21 @@ class WeatherWidget(GridLayout):
 			if ('USA-NBA') in item.title.text:
 				all_games.append(item.title.text.replace('#Basketball #Livescore @ScoresPro: (USA-NBA) #','').replace('#', ''))
 		print(all_games)
+		if all_games == []:
+			return 'No recent NBA scores.'
+		return '\n'.join(all_games)
+
+	def nfl_scores(self):
+		items = self.pull_site('https://www.scorespro.com/rss2/live-football.xml')
+		all_games = []
+		for item in items:
+			# if ('USA-FBS') in item.title.text:
+				# all_games.append(item.title.text.replace('American Football #Livescore @ScoresPro: (USA-FBS) #','').replace('#', ''))
+			if ('USA-NFL') in item.title.text:
+				all_games.append(item.title.text.replace('American Football #Livescore @ScoresPro: (USA-NFL) #','').replace('#', ''))
+		print(all_games)
+		if all_games == []:
+			return 'No recent NFL scores.'
 		return '\n'.join(all_games)
 
 class DailyViewApp(App):
