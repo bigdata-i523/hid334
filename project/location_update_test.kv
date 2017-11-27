@@ -1,0 +1,272 @@
+#:kivy 1.10.0
+#: import webbrowser webbrowser
+<NewsLabel@Label>:
+    color: [0,0,0,1]
+
+<ForecastBoxLayout@BoxLayout>:
+    orientation: 'vertical'
+    size_hint_y: 1
+
+<NewsLabelTitle@Label>:
+    text_size: self.size
+    shorten: True
+    shorten_from: 'right'
+    halign: 'left'
+    font_size: 13
+    bold: True
+    underline: True
+    markup: True
+    valign: 'bottom'
+    color: [0.133, 0, 0.8, 1]
+
+<NewsLabelStory@Label>:
+    size_hint_y: None
+    text_size: self.width, None
+    height: self.texture_size[1]
+    font_size: 11
+    padding_x: 1.1
+    valign: 'top'
+    color: [0.106, 0.106, 0.118, .9]
+
+<WeatherForecastDay@Label>:
+    text_size: self.size
+    valign: 'top'
+    halign: 'center'
+    bold: True
+    color: [0.663, 0.737, 0.816, 1]
+
+<WeatherForecastHiLo@Label>:
+    font_size: 12
+    color: [0.663, 0.737, 0.816, 0.8]
+
+<WeatherForecastImage@Image>:
+    size_hint_y: None
+    height: "50dp"
+
+<TransitAlert@Label>:
+    color: [0.576, 0.051, 0.192,1]
+    font_size: 12
+    size_hint_y: None
+    text_size: self.width, None
+    height: self.texture_size[1]
+    valign: 'top'
+
+<Scores@Label>:
+    color: [0, 0.125, 0.38,1]
+    font_size: 12
+    size_hint_y: None
+    text_size: self.width, None
+    height: self.texture_size[1]
+    
+<WeatherWidget>:
+    canvas.before:
+        Color:
+            rgba: [1, 1, 1, 1]
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    cols: 1
+    BoxLayout:
+        size_hint_y: None
+        BoxLayout:
+            size_hint_y: None
+            orientation: "vertical"
+            Image: 
+                source: root.get_weather_image()
+                keep_ratio: False
+                halign: 'center'
+                size_hint_y: None
+                height: "60dp"
+            Label:
+                id: current_temp
+                text: root.current_temperature()[:3] 
+                bold: True
+                font_size: 25
+                color: [0.216, 0.247, 0.318, 1]
+            Label:
+                text: root.high_low_temp(0)
+                size_hint: (1,0.5)
+                font_size: 15
+                color: [0.216, 0.247, 0.318, .75]
+        ForecastBoxLayout:
+            WeatherForecastDay: 
+                text: root.forecast_day(1)
+            WeatherForecastImage: 
+                source: root.forecast_image(1)
+            WeatherForecastHiLo: 
+                text: root.forecast_des(1)  
+            WeatherForecastHiLo: 
+                text: root.high_low_temp(1)
+        ForecastBoxLayout:
+            WeatherForecastDay: 
+                text: root.forecast_day(2)
+            WeatherForecastImage: 
+                source: root.forecast_image(2)
+            WeatherForecastHiLo: 
+                text: root.forecast_des(2)
+            WeatherForecastHiLo: 
+                text: root.high_low_temp(2)
+        ForecastBoxLayout:
+            WeatherForecastDay: 
+                text: root.forecast_day(3)
+            WeatherForecastImage: 
+                source: root.forecast_image(3)
+            WeatherForecastHiLo: 
+                text: root.forecast_des(3)
+            WeatherForecastHiLo: 
+                text: root.high_low_temp(3)
+        ForecastBoxLayout:
+            WeatherForecastDay: 
+                text: root.forecast_day(4)
+            WeatherForecastImage: 
+                source: root.forecast_image(4)
+            WeatherForecastHiLo: 
+                text: root.forecast_des(4)
+            WeatherForecastHiLo: 
+                text: root.high_low_temp(4)
+        ForecastBoxLayout:
+            WeatherForecastDay: 
+                text: root.forecast_day(5)
+            WeatherForecastImage: 
+                source: root.forecast_image(5)
+            WeatherForecastHiLo: 
+                text: root.forecast_des(5)
+            WeatherForecastHiLo: 
+                text: root.high_low_temp(5)
+        BoxLayout:
+            size_hint_y: None
+            BoxLayout:
+                orientation: 'vertical'
+                Label:
+                    text: root.TimeHours + ':' + root.TimeMinutes
+                    size_hint_x: 1
+                    font_size: 35
+                    size: self.size
+                    bold: True
+                    color: [0.345, 0.643, 0.69 ,1]
+                Label:
+                    text: root.current_date()
+                    size_hint_x: 1
+                    font_size: 15
+                    bold: True
+                    color: [0.345, 0.643, 0.69,1]
+                Label:
+                    text: root.sunrise()
+                    font_size: 10
+                    color: [0.345, 0.643, 0.69, .9]
+                    text_size: self.size
+                    valign: 'bottom'
+                    halign: 'center'
+                Label:
+                    text: root.sunset()
+                    font_size: 10
+                    color: [0.345, 0.643, 0.69, .9]
+                    text_size: self.size
+                    valign: 'top'
+                    halign: 'center'
+    BoxLayout:
+        orientation: 'horizontal'
+        size_hint: (1, 0.15)
+        BoxLayout: 
+            orientation: 'vertical'
+            BoxLayout:
+                orientation: 'horizontal'
+                size_hint: (0.4, 1)
+                Label: 
+                    text: root.current_location()
+                    font_size: 12
+                    bold: True
+                    color: [0.549, 0.612, 0.678 ,1]
+            BoxLayout:
+                orientation: 'horizontal'
+                size_hint: (0.4, 1)
+                TextInput:
+                    id: location_input
+                    text: '(Zip Code)'
+                    text_size: self.size
+                    halign: 'center'
+                    italic: True
+                    font_size: 10
+                    color: [0.549, 0.612, 0.678 ,1]
+                Button: 
+                    text: 'Refresh'
+                    color: [0.549, 0.612, 0.678 ,1]
+                    on_press: root.location_refreshed(location_input.text)
+        Button: 
+            text: 'News Sources'
+            size_hint_x: None
+        Button: 
+            text: root.quote_of_the_day()
+            color: [0.549, 0.612, 0.678 ,1]
+            italic: True
+            font_size: 13
+    BoxLayout:
+        orientation: 'horizontal'
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint: (1,1)
+            BoxLayout:
+                orientation: 'vertical' 
+                NewsLabelTitle: 
+                    text: '[ref=' + root.top_world(0,'title') + ']' + root.top_world(0,'title') + '[/ref]' 
+                    on_ref_press: 
+                        webbrowser.open(root.top_world(0,'link'))
+                NewsLabelStory: 
+                    text: root.top_world(0,'des')
+                NewsLabelTitle: 
+                    text: '[ref=' + root.top_world(0,'title') + ']' + root.top_world(1,'title') + '[/ref]' 
+                    on_ref_press: 
+                        webbrowser.open(root.top_world(1,'link'))
+                NewsLabelStory: 
+                    text: root.top_world(1,'des')
+                NewsLabelTitle: 
+                    text: '[ref=' + root.top_world(2,'title') + ']' + root.top_world(2,'title') + '[/ref]' 
+                    on_ref_press: 
+                        webbrowser.open(root.top_world(2,'link'))
+                NewsLabelStory: 
+                    text: root.top_world(2,'des')
+                NewsLabelTitle: 
+                    text: '[ref=' + root.top_world(3,'title') + ']' + root.top_world(3,'title') + '[/ref]' 
+                    on_ref_press: 
+                        webbrowser.open(root.top_world(3,'link'))
+                NewsLabelStory: 
+                    text: root.top_world(3,'des')
+        BoxLayout:
+            orientation: 'vertical'
+            NewsLabelTitle: 
+                text: '[ref=' + root.top_business_title(0) + ']' + root.top_business_title(0) + '[/ref]' 
+                on_ref_press: 
+                    webbrowser.open(root.top_business(0,'link'))
+            NewsLabelStory: 
+                text: root.top_business_story(0)
+            NewsLabelTitle: 
+                text: '[ref=' + root.top_business_title(0) + ']' + root.top_business_title(1) + '[/ref]' 
+                on_ref_press: 
+                    webbrowser.open(root.top_business(1,'link'))
+            NewsLabelStory: 
+                text: root.top_business_story(1)
+            NewsLabelTitle: 
+                text: '[ref=' + root.top_business_title(0) + ']' + root.top_business_title(2) + '[/ref]' 
+                on_ref_press: 
+                    webbrowser.open(root.top_business(2,'link'))
+            NewsLabelStory: 
+                text: root.top_business_story(2)
+            NewsLabelTitle: 
+                text: '[ref=' + root.top_business_title(0) + ']' + root.top_business_title(3) + '[/ref]' 
+                on_ref_press: 
+                    webbrowser.open(root.top_business(3,'link'))
+            NewsLabelStory: 
+                text: root.top_business_story(3)
+    BoxLayout:
+        orientation: 'horizontal'
+        size_hint: (1, .4)
+        BoxLayout:
+            orientation: 'vertical'
+            TransitAlert:
+                text: root.transit_alerts()
+        BoxLayout:
+            orientation: 'vertical'
+            Scores:
+                text: root.nba_scores() + '\n'
+            Scores: 
+                text: root.nfl_scores()
