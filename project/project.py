@@ -3,6 +3,7 @@ from kivy.uix.gridlayout import GridLayout
 from kivy.uix.scrollview import ScrollView
 from kivy.clock import Clock
 from kivy.properties import StringProperty
+from kivy.properties import ObjectProperty
 from random import *
 import time 
 from time import strftime
@@ -11,37 +12,66 @@ from weather import Weather
 import requests
 from bs4 import BeautifulSoup 
 import webbrowser
-from rtstock.stock import Stock
+# from rtstock.stock import Stock
 from weathercodes import codes, codes_des
 
 # In the kv file, everything to the right of the colon is pure python
 # for loading python module in kv file, use format of #:  import keyword module_name
 
-# Pull in the weather data
+# all_stocks = [Stock('AAPL'),Stock('AMZN'), Stock('GOOG'), Stock('NFLX'), Stock('FB'), Stock('TSLA')]
+
 weather = Weather()
-location = weather.lookup_by_location('New York, NY')
+location = weather.lookup_by_location('10128')
 condition = location.condition()
 forecasts = location.forecast()
 astronomy = location.astronomy()
 
-all_stocks = [Stock('AAPL'),Stock('AMZN'), Stock('GOOG'), Stock('NFLX'), Stock('FB'), Stock('TSLA')]
-
-for forecast in forecasts:
-	print(forecast.text)
-	print(dir(forecast))
-
+print(location.title())
 
 class WeatherWidget(GridLayout):
 
+	location_label = StringProperty(str(location.title().replace('Yahoo! Weather - ','')))
+	current_temp = StringProperty(str(condition['temp'] + '° ' + condition['text']))
+	hi_lo = StringProperty(str(forecasts[0].low() + 'º / ' + forecasts[0].high() + 'º '))
+
+	forecast_day_1 = StringProperty(str(datetime.strptime(forecasts[1].date(), '%d %b %Y').strftime('%a')))
+	forecast_day_2 = StringProperty(str(datetime.strptime(forecasts[2].date(), '%d %b %Y').strftime('%a')))
+	forecast_day_3 = StringProperty(str(datetime.strptime(forecasts[3].date(), '%d %b %Y').strftime('%a')))
+	forecast_day_4 = StringProperty(str(datetime.strptime(forecasts[4].date(), '%d %b %Y').strftime('%a')))
+	forecast_day_5 = StringProperty(str(datetime.strptime(forecasts[5].date(), '%d %b %Y').strftime('%a')))
+
+	# Pull in the current weather image - uses a numeric code 
+	all_codes = codes
+	code_from_yahoo = int(condition['code'])
+	mapped_image = all_codes.get(code_from_yahoo)[1]
+	curr_image = ObjectProperty(mapped_image)
+
+	# Load in the initial forecast images - these use a description and not a code so they need to be done differently
+	all_des = codes_des
+
+	forecast_img_1 = ObjectProperty(all_des.get(forecasts[1].text().lower()))
+	forecast_img_2 = ObjectProperty(all_des.get(forecasts[2].text().lower()))
+	forecast_img_3 = ObjectProperty(all_des.get(forecasts[3].text().lower()))
+	forecast_img_4 = ObjectProperty(all_des.get(forecasts[4].text().lower()))
+	forecast_img_5 = ObjectProperty(all_des.get(forecasts[5].text().lower()))
+
+	# HiLo for each forecast
+	forecast_hi_lo_1 = StringProperty(str(forecasts[1].low() + 'º / ' + forecasts[0].high() + 'º '))
+	forecast_hi_lo_2 = StringProperty(str(forecasts[2].low() + 'º / ' + forecasts[0].high() + 'º '))
+	forecast_hi_lo_3 = StringProperty(str(forecasts[3].low() + 'º / ' + forecasts[0].high() + 'º '))
+	forecast_hi_lo_4 = StringProperty(str(forecasts[4].low() + 'º / ' + forecasts[0].high() + 'º '))
+	forecast_hi_lo_5 = StringProperty(str(forecasts[5].low() + 'º / ' + forecasts[0].high() + 'º '))
+	
+	forecast_des_1 = forecasts[1].text()
+	forecast_des_2 = forecasts[2].text()
+	forecast_des_3 = forecasts[3].text()
+	forecast_des_4 = forecasts[4].text()
+	forecast_des_5 = forecasts[5].text()
+
+	# Initialize the settings for the clock
 	TimeSeconds = StringProperty('')
 	TimeMinutes = StringProperty('')
 	TimeHours = StringProperty('')
-
-	def current_location(self):
-		return location.title().replace('Yahoo! Weather - ','')
-
-	def current_temperature(self):
-		return condition['temp'] + '° ' + condition['text']
 
 	def current_date(self):
 		return time.strftime('%a %b %d')
@@ -51,21 +81,6 @@ class WeatherWidget(GridLayout):
 		code_from_yahoo = int(condition['code'])
 		mapped_image = all_codes.get(code_from_yahoo)[1]
 		return mapped_image
-
-	def forecast_image(self, day_num):
-		all_codes = codes_des
-		if all_codes.get(forecasts[day_num].text().lower()) is None:  
-			return 'unavailable.png'
-		return all_codes.get(forecasts[day_num].text().lower())
-	# day_num is an integer where 0 = today
-	def high_low_temp(self, day_num):
-		return forecasts[day_num].low() + 'º / ' + forecasts[day_num].high() + 'º '
-
-	def forecast_day(self, day_num):
-		return datetime.strptime(forecasts[day_num].date(), '%d %b %Y').strftime('%a')
-
-	def forecast_des(self, day_num):
-		return forecasts[day_num].text()
 
 	def get_location(self):
 		return location.title().replace('Yahoo! Weather - ','')
@@ -140,7 +155,74 @@ class WeatherWidget(GridLayout):
 
 	# def stock_last_price(self, stock):
 	# 	return Stock(stock).get_latest_price()
-	
+
+	def location_update(self):
+
+		location = weather.lookup_by_location(self.zip_code_input.text)
+
+		condition = location.condition()
+		forecasts = location.forecast()
+		astronomy = location.astronomy() 
+		condition = location.condition()
+
+		def current_location(location):
+			return location.title().replace('Yahoo! Weather - ','')
+
+		def current_temperature(conditon):
+			return condition['temp'] + '° ' + condition['text']
+
+		def forecast_image(day_num, forecasts):
+			all_codes = codes_des
+			if all_codes.get(forecasts[day_num].text().lower()) is None:  
+				return 'unavailable.png'
+			return all_codes.get(forecasts[day_num].text().lower())
+
+			# day_num is an integer where 0 = today
+		def high_low_temp(day_num, forecasts):
+			return forecasts[day_num].low() + 'º / ' + forecasts[day_num].high() + 'º '
+
+		def forecast_day(day_num, forecasts):
+			return datetime.strptime(forecasts[day_num].date(), '%d %b %Y').strftime('%a')
+
+		def forecast_des(day_num, forecasts):
+			return forecasts[day_num].text()
+
+		# Update the current info
+		self.location_label = current_location(location)
+		self.current_temp = current_temperature(condition)
+		self.hi_lo = high_low_temp(0, forecasts)
+
+		all_codes = codes
+		code_from_yahoo = int(condition['code'])
+		mapped_image = all_codes.get(code_from_yahoo)[1]
+		self.curr_image = mapped_image
+
+
+		self.forecast_day_1 = datetime.strptime(forecasts[1].date(), '%d %b %Y').strftime('%a')
+		self.forecast_img_1 = forecast_image(1, forecasts)
+		self.forecast_des_1 = forecast_des(1, forecasts)
+		self.forecast_hi_lo_1 = high_low_temp(1, forecasts)
+
+		self.forecast_day_2 = datetime.strptime(forecasts[2].date(), '%d %b %Y').strftime('%a')
+		self.forecast_img_2 = forecast_image(2, forecasts)
+		self.forecast_des_2 = forecast_des(2, forecasts)
+		self.forecast_hi_lo_2 = high_low_temp(2, forecasts)
+
+		self.forecast_day_3 = datetime.strptime(forecasts[3].date(), '%d %b %Y').strftime('%a')
+		self.forecast_img_3 = forecast_image(3, forecasts)
+		self.forecast_des_3 = forecast_des(3, forecasts)
+		self.forecast_hi_lo_3 = high_low_temp(3, forecasts)
+
+		self.forecast_day_4 = datetime.strptime(forecasts[4].date(), '%d %b %Y').strftime('%a')
+		self.forecast_img_4 = forecast_image(4, forecasts)
+		self.forecast_des_4 = forecast_des(4, forecasts)
+		self.forecast_hi_lo_4 = high_low_temp(4, forecasts)
+
+		self.forecast_day_5 = datetime.strptime(forecasts[5].date(), '%d %b %Y').strftime('%a')
+		self.forecast_img_5 = forecast_image(5, forecasts)
+		self.forecast_des_5 = forecast_des(5, forecasts)
+		self.forecast_hi_lo_5 = high_low_temp(5, forecasts)
+
 	def transit_alerts(self):
 		items = self.pull_site('http://www.njtransit.com/rss/RailAdvisories_feed.xml')
 		relevant_alerts = []
@@ -168,7 +250,6 @@ class WeatherWidget(GridLayout):
 				# all_games.append(item.title.text.replace('American Football #Livescore @ScoresPro: (USA-FBS) #','').replace('#', ''))
 			if ('USA-NFL') in item.title.text:
 				all_games.append(item.title.text.replace('American Football #Livescore @ScoresPro: (USA-NFL) #','').replace('#', ''))
-		print(all_games)
 		if all_games == []:
 			return 'No recent NFL scores.'
 		return '\n'.join(all_games)
