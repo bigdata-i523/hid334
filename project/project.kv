@@ -164,8 +164,27 @@
 	                valign: 'top'
 	                halign: 'center'
 	BoxLayout:
-		orientation: 'vertical'
+		orientation: 'horizontal'
 		size_hint: (1, 0.15)
+		BoxLayout:
+			size_hint: (0.15, 1)
+			orientation: 'vertical'
+
+			Label: 
+				text: root.current_location()
+				color: [0.549, 0.612, 0.678 ,1]
+				bold: True
+			
+			BoxLayout:
+				orientation: 'horizontal'
+				size_hint: (1, 0.35)
+				TextInput: 
+					hint_text: 'Insert New Zip Code Here'
+					italic: True
+					font_size: 10
+				Button: 
+					text: 'Refresh Location'
+					font_size: 10
 		Label: 
 			text: root.quote_of_the_day()
 			color: [0.549, 0.612, 0.678 ,1]
