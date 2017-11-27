@@ -59,6 +59,8 @@
     height: self.texture_size[1]
 	
 <WeatherWidget>:
+	zip_code_input: _zip_code_input
+
     canvas.before:
         Color:
             rgba: [1, 1, 1, 1]
@@ -72,66 +74,101 @@
             size_hint_y: None
             orientation: "vertical"
             Image: 
-            	source: root.get_weather_image()
+            	source: root.curr_image
+            	# source: root.get_weather_image()
             	keep_ratio: False
             	halign: 'center'
             	size_hint_y: None
             	height: "60dp"
             Label:
-                text: root.current_temperature()[:3] 
+            	id: current_temp
+                text: root.current_temp
+                # text: root.current_temp_label
                 bold: True
                 font_size: 25
                 color: [0.216, 0.247, 0.318, 1]
 			Label:
-                text: root.high_low_temp(0)
+				id: hi_lo
+                text: root.hi_lo
                 size_hint: (1,0.5)
                 font_size: 15
                 color: [0.216, 0.247, 0.318, .75]
+	    
 	    ForecastBoxLayout:
 			WeatherForecastDay: 
-	        	text: root.forecast_day(1)
-	    	WeatherForecastImage: 
-	    		source: root.forecast_image(1)
+				id: forecast_day_1
+	        	# text: root.forecast_day(1)
+	        	text: root.forecast_day_1
+	    	WeatherForecastImage:
+	    		id: forecast_img_1 
+	    		source: root.forecast_img_1
 	    	WeatherForecastHiLo: 
-	        	text: root.forecast_des(1)	
+	    		id: forecast_des_1
+	        	text: root.forecast_des_1
 			WeatherForecastHiLo: 
-	        	text: root.high_low_temp(1)
+				id: forecast_hi_lo_1
+	        	text: root.forecast_hi_lo_1
+	    
 	    ForecastBoxLayout:
 			WeatherForecastDay: 
-	        	text: root.forecast_day(2)
-	    	WeatherForecastImage: 
-	    		source: root.forecast_image(2)
+				id: forecast_day_2
+	        	# text: root.forecast_day(1)
+	        	text: root.forecast_day_2
+	    	WeatherForecastImage:
+	    		id: forecast_img_2 
+	    		source: root.forecast_img_2
+	    	WeatherForecastHiLo: 
+	    		id: forecast_des_2
+	        	text: root.forecast_des_2
 			WeatherForecastHiLo: 
-	        	text: root.forecast_des(2)
-	        WeatherForecastHiLo: 
-	        	text: root.high_low_temp(2)
+				id: forecast_hi_lo_2
+	        	text: root.forecast_hi_lo_2
+
 	    ForecastBoxLayout:
 			WeatherForecastDay: 
-	        	text: root.forecast_day(3)
-	    	WeatherForecastImage: 
-	    		source: root.forecast_image(3)
-	        WeatherForecastHiLo: 
-	        	text: root.forecast_des(3)
-	        WeatherForecastHiLo: 
-	        	text: root.high_low_temp(3)
+				id: forecast_day_3
+	        	# text: root.forecast_day(1)
+	        	text: root.forecast_day_3
+	    	WeatherForecastImage:
+	    		id: forecast_img_3
+	    		source: root.forecast_img_3
+	    	WeatherForecastHiLo: 
+	    		id: forecast_des_3
+	        	text: root.forecast_des_3
+			WeatherForecastHiLo: 
+				id: forecast_hi_lo_3
+	        	text: root.forecast_hi_lo_3
+
 	    ForecastBoxLayout:
 			WeatherForecastDay: 
-	        	text: root.forecast_day(4)
-	    	WeatherForecastImage: 
-	    		source: root.forecast_image(4)
-	        WeatherForecastHiLo: 
-	        	text: root.forecast_des(4)
+				id: forecast_day_4
+	        	# text: root.forecast_day(1)
+	        	text: root.forecast_day_4
+	    	WeatherForecastImage:
+	    		id: forecast_img_4
+	    		source: root.forecast_img_4
+	    	WeatherForecastHiLo: 
+	    		id: forecast_des_4
+	        	text: root.forecast_des_4
 			WeatherForecastHiLo: 
-	        	text: root.high_low_temp(4)
-		ForecastBoxLayout:
+				id: forecast_hi_lo_4
+	        	text: root.forecast_hi_lo_4
+
+	    ForecastBoxLayout:
 			WeatherForecastDay: 
-	        	text: root.forecast_day(5)
-	    	WeatherForecastImage: 
-	    		source: root.forecast_image(5)
+				id: forecast_day_5
+	        	# text: root.forecast_day(1)
+	        	text: root.forecast_day_5
+	    	WeatherForecastImage:
+	    		id: forecast_img_5
+	    		source: root.forecast_img_5
+	    	WeatherForecastHiLo: 
+	    		id: forecast_des_5
+	        	text: root.forecast_des_5
 			WeatherForecastHiLo: 
-	        	text: root.forecast_des(5)
-	        WeatherForecastHiLo: 
-	        	text: root.high_low_temp(5)
+				id: forecast_hi_lo_5
+	        	text: root.forecast_hi_lo_5
+
 		BoxLayout:
 			size_hint_y: None
 			BoxLayout:
@@ -171,7 +208,8 @@
 			orientation: 'vertical'
 
 			Label: 
-				text: root.current_location()
+				id: location_label
+				text: root.location_label
 				color: [0.549, 0.612, 0.678 ,1]
 				bold: True
 			
@@ -179,12 +217,15 @@
 				orientation: 'horizontal'
 				size_hint: (1, 0.35)
 				TextInput: 
-					hint_text: 'Insert New Zip Code Here'
+					id: _zip_code_input
+					hint_text: 'New Zip or City/State Here'
 					italic: True
 					font_size: 10
+					on_double_tap: _zip_code_input.text =''
 				Button: 
 					text: 'Refresh Location'
 					font_size: 10
+					on_press: root.location_update()
 		Label: 
 			text: root.quote_of_the_day()
 			color: [0.549, 0.612, 0.678 ,1]
