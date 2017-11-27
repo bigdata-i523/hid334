@@ -62,11 +62,11 @@ class WeatherWidget(GridLayout):
 	forecast_hi_lo_4 = StringProperty(str(forecasts[4].low() + 'º / ' + forecasts[0].high() + 'º '))
 	forecast_hi_lo_5 = StringProperty(str(forecasts[5].low() + 'º / ' + forecasts[0].high() + 'º '))
 	
-	forecast_des_1 = forecasts[1].text()
-	forecast_des_2 = forecasts[2].text()
-	forecast_des_3 = forecasts[3].text()
-	forecast_des_4 = forecasts[4].text()
-	forecast_des_5 = forecasts[5].text()
+	forecast_des_1 = StringProperty(forecasts[1].text())
+	forecast_des_2 = StringProperty(forecasts[2].text())
+	forecast_des_3 = StringProperty(forecasts[3].text())
+	forecast_des_4 = StringProperty(forecasts[4].text())
+	forecast_des_5 = StringProperty(forecasts[5].text())
 
 	# Initialize the settings for the clock
 	TimeSeconds = StringProperty('')
@@ -93,7 +93,10 @@ class WeatherWidget(GridLayout):
 
 	def update(self, dt):
 		current_time = time.localtime()
-		self.TimeHours = str(current_time.tm_hour).zfill(2)
+		hour = current_time.tm_hour
+		if hour >= 12: 
+			hour = hour - 12
+		self.TimeHours = str(hour).zfill(2)
 		self.TimeMinutes = str(current_time.tm_min).zfill(2)
 		self.TimeSeconds = str(current_time.tm_sec).zfill(2)
 
@@ -165,6 +168,7 @@ class WeatherWidget(GridLayout):
 		astronomy = location.astronomy() 
 		condition = location.condition()
 
+
 		def current_location(location):
 			return location.title().replace('Yahoo! Weather - ','')
 
@@ -187,6 +191,11 @@ class WeatherWidget(GridLayout):
 		def forecast_des(day_num, forecasts):
 			return forecasts[day_num].text()
 
+		print('Button clicked')
+		for i in range(6): 
+			print(forecast_des(i, forecasts))
+
+
 		# Update the current info
 		self.location_label = current_location(location)
 		self.current_temp = current_temperature(condition)
@@ -196,7 +205,6 @@ class WeatherWidget(GridLayout):
 		code_from_yahoo = int(condition['code'])
 		mapped_image = all_codes.get(code_from_yahoo)[1]
 		self.curr_image = mapped_image
-
 
 		self.forecast_day_1 = datetime.strptime(forecasts[1].date(), '%d %b %Y').strftime('%a')
 		self.forecast_img_1 = forecast_image(1, forecasts)
@@ -215,12 +223,13 @@ class WeatherWidget(GridLayout):
 
 		self.forecast_day_4 = datetime.strptime(forecasts[4].date(), '%d %b %Y').strftime('%a')
 		self.forecast_img_4 = forecast_image(4, forecasts)
-		self.forecast_des_4 = forecast_des(4, forecasts)
+		self.forecast_des_4 = str(forecast_des(4, forecasts))
 		self.forecast_hi_lo_4 = high_low_temp(4, forecasts)
 
+		print('read in here...')
 		self.forecast_day_5 = datetime.strptime(forecasts[5].date(), '%d %b %Y').strftime('%a')
 		self.forecast_img_5 = forecast_image(5, forecasts)
-		self.forecast_des_5 = forecast_des(5, forecasts)
+		self.forecast_des_5 = str(forecast_des(5, forecasts))
 		self.forecast_hi_lo_5 = high_low_temp(5, forecasts)
 
 	def transit_alerts(self):
