@@ -1,4 +1,5 @@
 from kivy.app import App
+from kivy.config import Config
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.scrollview import ScrollView
 from kivy.clock import Clock
@@ -26,7 +27,8 @@ condition = location.condition()
 forecasts = location.forecast()
 astronomy = location.astronomy()
 
-print(location.title())
+Config.set('graphics', 'fullscreen', 'auto')
+Config.write()
 
 class WeatherWidget(GridLayout):
 
