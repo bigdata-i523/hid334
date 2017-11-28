@@ -68,6 +68,14 @@ class WeatherWidget(GridLayout):
 	forecast_des_4 = StringProperty(forecasts[4].text())
 	forecast_des_5 = StringProperty(forecasts[5].text())
 
+	local_news_0 = StringProperty('')
+	local_news_1 = StringProperty('')
+	local_news_2 = StringProperty('')
+	local_news_3 = StringProperty('')
+	local_news_4 = StringProperty('')
+	local_news_5 = StringProperty('')
+
+
 	# Initialize the settings for the clock
 	TimeSeconds = StringProperty('')
 	TimeMinutes = StringProperty('')
@@ -160,14 +168,17 @@ class WeatherWidget(GridLayout):
 	# 	return Stock(stock).get_latest_price()
 
 	def location_update(self):
-
-		location = weather.lookup_by_location(self.zip_code_input.text)
+		try: 
+			location = weather.lookup_by_location(self.zip_code_input.text)
+			if location is None: 
+				location =  weather.lookup_by_location('10128')
+		except:
+			location = weather.lookup_by_location('10128')
 
 		condition = location.condition()
 		forecasts = location.forecast()
 		astronomy = location.astronomy() 
 		condition = location.condition()
-
 
 		def current_location(location):
 			return location.title().replace('Yahoo! Weather - ','')
@@ -191,10 +202,14 @@ class WeatherWidget(GridLayout):
 		def forecast_des(day_num, forecasts):
 			return forecasts[day_num].text()
 
-		print('Button clicked')
-		for i in range(6): 
-			print(forecast_des(i, forecasts))
-
+		def get_google_local_rss_feed(location, story_num):
+			main_url = 'https://news.google.com/news/section?output=rss&q='
+			location = location.description().replace('Yahoo! Weather for ','').replace(', ','%20').replace(' ','%20')
+			full_url = main_url + location
+			all_stories = []
+			for story in self.pull_site(full_url)[1:]:
+				all_stories.append(story.title.text)
+			return all_stories[story_num]
 
 		# Update the current info
 		self.location_label = current_location(location)
@@ -226,19 +241,25 @@ class WeatherWidget(GridLayout):
 		self.forecast_des_4 = str(forecast_des(4, forecasts))
 		self.forecast_hi_lo_4 = high_low_temp(4, forecasts)
 
-		print('read in here...')
 		self.forecast_day_5 = datetime.strptime(forecasts[5].date(), '%d %b %Y').strftime('%a')
 		self.forecast_img_5 = forecast_image(5, forecasts)
 		self.forecast_des_5 = str(forecast_des(5, forecasts))
 		self.forecast_hi_lo_5 = high_low_temp(5, forecasts)
 
-	def transit_alerts(self):
-		items = self.pull_site('http://www.njtransit.com/rss/RailAdvisories_feed.xml')
-		relevant_alerts = []
-		for item in items:
-			if 'NEC' in item.link.text:
-				relevant_alerts.append(item.description.text)
-		return '\n-'.join(relevant_alerts)
+		self.local_news_0 = get_google_local_rss_feed(location, 0)
+		self.local_news_1 = get_google_local_rss_feed(location, 1)
+		self.local_news_2 = get_google_local_rss_feed(location, 2)
+		self.local_news_3 = get_google_local_rss_feed(location, 3)
+		self.local_news_4 = get_google_local_rss_feed(location, 4)
+		self.local_news_5 = get_google_local_rss_feed(location, 5)
+
+	# def transit_alerts(self):
+	# 	items = self.pull_site('http://www.njtransit.com/rss/RailAdvisories_feed.xml')
+	# 	relevant_alerts = []
+	# 	for item in items:
+	# 		if 'NEC' in item.link.text:
+	# 			relevant_alerts.append(item.description.text)
+	# 	return '\n-'.join(relevant_alerts)
 
 	def nba_scores(self):
 		items = self.pull_site('https://www.scorespro.com/rss2/live-basketball.xml')
@@ -246,7 +267,6 @@ class WeatherWidget(GridLayout):
 		for item in items:
 			if ('USA-NBA') in item.title.text:
 				all_games.append(item.title.text.replace('#Basketball #Livescore @ScoresPro: (USA-NBA) #','').replace('#', ''))
-		print(all_games)
 		if all_games == []:
 			return 'No recent NBA scores.'
 		return '\n'.join(all_games)
