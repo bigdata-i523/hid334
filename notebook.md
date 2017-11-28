@@ -6,6 +6,7 @@
 * 2017-10-17 Meeting: Online session (paper 1 revisions, report.bib)
 * 2017-11-06 Meeting: Online session to discuss paper compilation via commandline in Windows
 * 2017-11-13 Meeting: Online session (advice from Juliette on project)
+* 2017-11-27 Meeting: Online session (project specific advice with Prof. and Juliette, tutorial on how to make a Makefile)
 
 # Logistic
 * 2017-08-23: Created GitHub, Chameleon and FuturesSystems Portal accounts
@@ -32,6 +33,13 @@
 * 2017-10-27: Worked on potential paper 2 substitute project for IoT (in unfinished GitHub folder) - TBD if pursued further
 * 2017-10-28: Modified using IoT project with Tkinter - put on hold for paper 2 - possible project instead
 * 2017-11-06: Researched Kivy application for Raspberry Pi instead of TKinter
+* 2017-11-20: Project: Began first implementation of app via Kivy - added running clock
+* 2017-11-21: Project: Added weather information and news feeds
+* 2017-11-22: Project: Attempted to add live stock information (deprecated by Yahoo/Google) and added live NJ Transit travel alerts
+* 2017-11-23: Project: Build weather icon dictionary to display various weather conditions for live and forecasts
+* 2017-11-24: Project: Modified the news feed so the most recent stories from the WSJ are displayed first (rather than RSS feed order), Made news story title clickable so user can navigate directly to the website for the full article, added NFL and NBA scores
+* 2017-11-27: Project: Added text input field to allow user to change their location (updates weather, forecasts and local news stories), replaced NJ Transit alerts with local news feed
+* 2017-11-28: Project: Auto-maximize app when running
 
 # Writing
 * 2017-09-07: Chose paper 1 topic
