@@ -272,6 +272,12 @@
                         webbrowser.open(root.top_world(3,'link'))
                 NewsLabelStory: 
                     text: root.top_world(3,'des')
+                NewsLabelTitle: 
+                    text: '[ref=' + root.top_world(4,'title') + ']' + root.top_world(4,'title') + '[/ref]' 
+                    on_ref_press: 
+                        webbrowser.open(root.top_world(4,'link'))
+                NewsLabelStory: 
+                    text: root.top_world(4,'des')
         BoxLayout:
             orientation: 'vertical'
             NewsHeader: 
@@ -283,23 +289,29 @@
             NewsLabelStory: 
                 text: root.top_business_story(0)
             NewsLabelTitle: 
-                text: '[ref=' + root.top_business_title(0) + ']' + root.top_business_title(1) + '[/ref]' 
+                text: '[ref=' + root.top_business_title(1) + ']' + root.top_business_title(1) + '[/ref]' 
                 on_ref_press: 
                     webbrowser.open(root.top_business(1,'link'))
             NewsLabelStory: 
                 text: root.top_business_story(1)
             NewsLabelTitle: 
-                text: '[ref=' + root.top_business_title(0) + ']' + root.top_business_title(2) + '[/ref]' 
+                text: '[ref=' + root.top_business_title(2) + ']' + root.top_business_title(2) + '[/ref]' 
                 on_ref_press: 
                     webbrowser.open(root.top_business(2,'link'))
             NewsLabelStory: 
                 text: root.top_business_story(2)
             NewsLabelTitle: 
-                text: '[ref=' + root.top_business_title(0) + ']' + root.top_business_title(3) + '[/ref]' 
+                text: '[ref=' + root.top_business_title(3) + ']' + root.top_business_title(3) + '[/ref]' 
                 on_ref_press: 
                     webbrowser.open(root.top_business(3,'link'))
             NewsLabelStory: 
                 text: root.top_business_story(3)
+            NewsLabelTitle: 
+                text: '[ref=' + root.top_business_title(4) + ']' + root.top_business_title(4) + '[/ref]' 
+                on_ref_press: 
+                    webbrowser.open(root.top_business(4,'link'))
+            NewsLabelStory: 
+                text: root.top_business_story(4)                
     BoxLayout:
         orientation: 'horizontal'
         size_hint: (1, .4)
