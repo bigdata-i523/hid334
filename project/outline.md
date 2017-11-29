@@ -26,10 +26,12 @@
 ### Results
 * Refresh rate: secondly
 * Bytes used (build): 966656
-* Bytes used (refresh): 1032
+* Bytes used (refresh): 1032	
+	```python
 	from pympler import asizeof
 	obj = WeatherWidget()
 	print(asizeof.asized(obj, detail=1).format())
+	```	
 ## Developing Areas in IoT 
 ### Edge Computing 
 * Description
