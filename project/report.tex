@@ -1,0 +1,80 @@
+\documentclass[sigconf]{acmart}
+
+\input{format/i523}
+
+\begin{document}
+\title{Apps: At The Intersection of Big Data and IoT }
+
+\author{Peter Russell}
+\affiliation{%
+  \institution{Indiana University}
+}
+\email{petrusse@iu.edu}
+
+\begin{abstract}
+Test
+\end{abstract}
+
+\keywords{i523, HID 334, Edge Computing, Raspberry Pi, IoT}
+
+\maketitle
+
+
+\section{Introduction}
+In 2020, it is estimated that 95 percent of electronics will contain IoT technology. This type of technology, with IoT being short for ``Internet of Things'', is broadly defined in its application, which could come in the form of a phone, vehicle, a home device like a thermostat or television, but rather specific in its intention. Put simply, IoT technology is intended to describe devices that collect and relay information via the Internet. They are different than a computer though in that an IoT device is built to serve a specific purpose or job, but not do the actual heavy computing itself. Nevertheless, computing developments have been central to the recent growth in the IoT. Innovations in computing power and speed have increased the amount of data that can be collected and processed, typically referred to ``Big Data'', which has enabled IoT devices to become more personalized and useful. The utility of these devices has spurred tremendous growth recently, on the order of $30 \%$ annually and 2017 is expected to be the year that the number of IoT devices exceeds the number of people on Earth. %https://www.gartner.com/newsroom/id/3598917
+
+As the growth in IoT, aided by Big Data, continues in coming years, scalability of the devices becomes a central concern. Further growth from this point means multiple IoT devices per person, which means an increasing number of providers will need to find a solution to this problem. 
+
+\section{Developing Areas}
+\subsection{Edge Computing}
+Traditionally, individual devices that were intended to work in conjunction, such as surveillance cameras, were simple in their functionality and storage. Namely, a group of cameras would record individually and send their results back to a central server. However, with improvements in image quality, this can become a Big Data problem very quickly as these cameras are running around the clock collecting footage. In the historical model of a centralized server, this setup eventually creates problems as bandwith and storage issues emerge. These limitations are the problems that edge computing seeks to circumvent and has become a major catalyst in the growth of IoT devices. 
+Edge computing gains its name from how the information being processed by the device. Prior to this recent innovation, information was gathered, sent to the cloud, processed there, and then the output is pushed back to the device. Namely, it was a centralized process. However, with edge computing, devices are more intelligent in what information they choose to send, providing a much more efficient process. Rather than having a camera monitor an area constantly, even when there is no motion, modern IoT cameras have been equipped with motion detection so information is only sent when there is something to actually record. Since this decision and processing is made on the actual device, it is considered to be at the \emph{edge} of the network.  %https://www.networkworld.com/article/3234708/internet-of-things/why-edge-computing-is-critical-for-the-iot.html
+This capability is largely possible due to the dramatic decrease in computing costs. For example, for the cost of $\$10$ one can get a single-board computer with 1 GHz and 512 MB RAM through the Raspberry Pi. This type of processing is close to becoming the majority as it is expected that by 2019, $45\%$ of all data collected by IoT devices will be processed at the edge of the network. 
+\section{IoT Project}
+\subsection{Project Description}
+This project allows users to enjoy a personalized experience of relevant information they might be interested in to start their day.
+As an example of the accessibility of the IoT to individuals, a ``smart" monitor was created through the Raspberry Pi 3 (Model B) that aggregates several pieces of relevant information for a user beginning their day. Based off the user's specified location, they will receive a local news feed, the current weather with high and low temperature for the day, a five day forecast, the top business and world news (with clickable links directly to the website) and recent sports scores. 
+\subsection{Application to Big Data}
+The information displayed is refreshed every second from its various sources, allowing the user to benefit from many Big Data calculations made by the providers. Namely, Google in the case of local news and Yahoo/The Weather Channel. 
+\subsubsection{Google News}
+Google News is an incredibly interesting case study in Big Data processing and it has been a lightening rod for controversy for how central it is to most users. 
+
+
+\subsection{Development}
+The project was developed using Python, utilizing the Kivy package for GUI development, the requests and Beautiful Soup packages for scraping websites and Yahoo Weather via the Weather package. 
+\subsection{Project Application to Big Data}
+
+
+This project is the culmination of Big Data analysis conducted by Google through their local news search engine and Yahoo for its weather analytics. 
+
+\subsection{Scalability}
+
+%https://blogs.microsoft.com/iot/2017/09/19/five-ways-edge-computing-will-transform-business/
+%https://techcrunch.com/2017/08/03/edge-computing-could-push-the-cloud-to-the-fringe/
+
+
+
+%This innovation, of course, creates a cumulative effect whereby more data gives way to more insight and therefore, new solutions or innovation. 
+
+%The paper should be 2 written pages excluding figures and references. For %your chosen topic, your paper should answer the following questions:
+%Why is this topic important?
+%How is it relevant to Big Data?
+ 
+%More information on scope:
+%You should assume not much knowledge, common knowledge is ok, but as you %have only 2 pages you need to make sure you address
+ 
+%a) what is the problem
+%b) why is big data involved
+%c) how can big data or analytics of big data help
+%d) what infrastructure/programs/systems exist for this
+ 
+\begin{acks}
+The author would like to thank Dr. Gregor von Laszewski and Juliette Zerick for their support and suggestions in exploring this topic.\cite{awsmkt}
+\end{acks}
+
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{report} 
+
+%\input{issues}
+
+\end{document}
