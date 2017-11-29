@@ -39,6 +39,6 @@
 ### Security
 * Vulnerabilities in current technology
 * Solutions being discovered
-## Voice Recognition
+### Voice Recognition
 * New dimension of user data
 * User behavior with IoT 
