@@ -1,3 +1,5 @@
+#
+
 ## Introduction
 ### High level discussion of IoT/Big Data
 * Recent growth / projections
@@ -17,7 +19,9 @@
 ### Data Used
 * RSS Feeds for News / Scores using XML
 	* XML vs. YAML
-* Discussion of MQTT in IoT for similar tasks
+* MQTT in IoT for use in the Raspberry Pi
+	* What is MQTT? 
+	* Advantages / Disadvantages over traditional data retrieval
 
 ## Developing Areas in IoT 
 ### Edge Computing 
@@ -26,3 +30,6 @@
 ### Security
 * Vulnerabilities in current technology
 * Solutions being discovered
+## Voice Recognition
+* New dimension of user data
+* User behavior with IoT 
