@@ -22,6 +22,6 @@
 ### Edge Computing 
 * Description
 * Current Use Cases
-### Home Devices
-* Description
-* Current Use Cases
+### Security
+* Vulnerabilities in current technology
+* Solutions being discovered
