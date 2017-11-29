@@ -17,6 +17,7 @@
 ### Data Used
 * RSS Feeds for News / Scores using XML
 	* XML vs. YAML
+* Discussion of MQTT in IoT for similar tasks
 
 ## Developing Areas in IoT 
 ### Edge Computing 
