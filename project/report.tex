@@ -25,36 +25,65 @@ In 2020, it is estimated that 95 percent of electronics will contain IoT technol
 
 As the growth in IoT, aided by Big Data, continues in coming years, scalability of the devices becomes a central concern. Further growth from this point means multiple IoT devices per person, which means an increasing number of providers will need to find a solution to this problem. 
 
-\section{Developing Areas}
-\subsection{Edge Computing}
-Traditionally, individual devices that were intended to work in conjunction, such as surveillance cameras, were simple in their functionality and storage. Namely, a group of cameras would record individually and send their results back to a central server. However, with improvements in image quality, this can become a Big Data problem very quickly as these cameras are running around the clock collecting footage. In the historical model of a centralized server, this setup eventually creates problems as bandwith and storage issues emerge. These limitations are the problems that edge computing seeks to circumvent and has become a major catalyst in the growth of IoT devices. 
-Edge computing gains its name from how the information being processed by the device. Prior to this recent innovation, information was gathered, sent to the cloud, processed there, and then the output is pushed back to the device. Namely, it was a centralized process. However, with edge computing, devices are more intelligent in what information they choose to send, providing a much more efficient process. Rather than having a camera monitor an area constantly, even when there is no motion, modern IoT cameras have been equipped with motion detection so information is only sent when there is something to actually record. Since this decision and processing is made on the actual device, it is considered to be at the \emph{edge} of the network.  %https://www.networkworld.com/article/3234708/internet-of-things/why-edge-computing-is-critical-for-the-iot.html
-This capability is largely possible due to the dramatic decrease in computing costs. For example, for the cost of $\$10$ one can get a single-board computer with 1 GHz and 512 MB RAM through the Raspberry Pi. This type of processing is close to becoming the majority as it is expected that by 2019, $45\%$ of all data collected by IoT devices will be processed at the edge of the network. 
 \section{IoT Project}
-\subsection{Project Description}
-This project allows users to enjoy a personalized experience of relevant information they might be interested in to start their day.
-As an example of the accessibility of the IoT to individuals, a ``smart" monitor was created through the Raspberry Pi 3 (Model B) that aggregates several pieces of relevant information for a user beginning their day. Based off the user's specified location, they will receive a local news feed, the current weather with high and low temperature for the day, a five day forecast, the top business and world news (with clickable links directly to the website) and recent sports scores. 
+\subsection{Description}
+The project undertaken was to design an application that demonstrates how an IoT device can be used to integrate Big Data analytics for a desired output. In this case, the goal was to create a personalized interface that gives the user a morning snapshot for relevant, important information to begin their day. 
+
+\subsection{Implementation}
+The application was developed using Python, utilizing the Kivy package for GUI development, the requests and Beautiful Soup packages for the user location, news stories and sports scores along with the  Yahoo Weather/Weather Underground via the Weather package. 
+
+\subsection{Results}
+As part of the display, a continuous running clock was added, which necessitated the application to be on a constant refresh. This was implemented successfully and at a relatively low cost with no significant delays. The total build of the application consumed 966,565 bytes with each refresh using just 1032 bytes. 
+At the initialization of the program, the application uses the user's IP address to find their zip code to populate the local weather forecast and local news. For the weather, the user will get the current temperature with a high/low for the current day and each day in the five day forecast.
+
+Additionally, as news stories are published to the WSJ news feed, they will be read into the application and refreshed. Stories are shown in chronological order along with their time stamp of publication and each is hyperlinked directly to the full story if the user wants more information. 
+
 \subsection{Application to Big Data}
-The information displayed is refreshed every second from its various sources, allowing the user to benefit from many Big Data calculations made by the providers. Namely, Google in the case of local news and Yahoo/The Weather Channel. 
-\subsubsection{Google News}
-Google News is an incredibly interesting case study in Big Data processing and it has been a lightening rod for controversy for how central it is to most users. 
+One of the main benefits of IoT is synthesizing data across numerous platforms and data sources into a desired output. As is likely evident by the description of the project and will be expanded on further, this application benefits greatly from the creativity by the providers in solving difficult Big Data issues, such as the  clustering of news (Google) and weather forecasting (Yahoo/Weather Underground). 
+
+\subsection{Google News}
+\subsubsection{Big Data Description}
+Google News has evolved into a central source of information for how a large share of the population receives its news. In fact, as a display of the trust that users place in Google to deliver the most information in the most efficient manner, it was found that users are more likely to trust a Google news headline than that same headline from the original source \cite{edelman}. Additionally, $44\%$ of users were found to read nothing more than the headlines \cite{googleheadlines}. This is a testament to their ability to simplify the universe of world news into succinct rankings. 
+
+Entering into its fifteenth year, Google News aggregates from 50,000 news sources worldwide across 30 different languages. In 2012, they reported the division was receiving 1 billion unique visits a \emph{week}\cite{krishna}. For reference, major individual news providers, such as CNN and the New York Times receive 125 million and 99 million unique visitors per \emph{month} \cite{nytimes}. These statistics further demonstrate Google's successful navigation of the Big Data problem for news stories in the eyes of its users. 
+It's relatively clear why this is an important Big Data problem, but one might be curious how they're able to effectively navigate the problem. Unfortunately, the full design from start to finish is a well kept secret, but pieces have been released and one can piece together a mosaic view of what might be going on under the hood. The decision to not disclose the techniques for ranking news stories is understandable, but it has been a lightening rod of controversy nonetheless. Some view the decision of Google's scoring as effectively acting as a censor for the internet while they maintain it is to keep the integrity of the algorithm so that news stories cannot be written purely for traffic, known as search engine optimization \cite{censor}. 
+
+On the surface, one might question the economic value of Google News to the larger company since it is a free service for both users and providers. However, there is a tremendous amount to be gained in solving this Big Data problem. Even though Google does not show ads on its news site, it was estimated to generate spillover traffic into its search engine that leaves the News entity worth $\$100$ million in 2008 \cite{newsvalue}. The current valuation is undoubtedly higher. So while there are profits to be made for Google in this quest, publishers of these stories have a tremendous amount of interest in this problem as well. Some providers don't believe content should be indexed to Google's search algorithm for free and Google should pay them for their investigative research. One such provider, Axel Springer, Germany's largest news source decided to remove themselves from the index for two weeks and the results were devastating for the site as traffic through the site dropped by $40\%$ \cite{springer}.
+
+\subsubsection{Big Data Solution}
+While Google News has undergone many innovations, especially in recent years with demand by users to auto-detect fake news, the information that has been released is relevant, but dated. Of what has been uncovered, the primary algorithms in the early versions used in this Big Data problem were MinHash, Probabilistic Latent Semantic Indexing and Covisitation. Specifically, these methods will compare historical clicks with other similar users for recommendations, decipher key words and phrases from an article for grouping and track how news stories are clicked within a certain time frame to find stories that were read successively.  
+
+For processing these queries, Google uses MapReduce and Hadoop architecture \cite{googlearch}.  
+\subsection{Weather Underground via Yahoo API}
+\subsubsection{Big Data Description}
+Weather is a primary concern in planning for many businesses and as a result, companies are willing to dedicate a tremendous amount of resources towards accurate forecasts. One of the most innovative companies and a great example of the intersection of IoT and Big Data is Weather Underground. 
+
+Weather Underground is a weather forecasting service that was once owned by the Weather Channel and recently, partially by IBM to integrate with its growing IoT ecosystem. What makes the company unique is how their forecasts are formulated. In their model, forecasts provided by the National Weather Service (NWS), which aggregates data from airports and weather balloons, are pooled along with data from personalized weather stations that are maintained by its users, which number over 250,000. This provides an additional layer of information, yielding more frequent data, longer forecast windows and greater certainty for a given area. Namely, users can get new forecasts every 15 minutes (versus every 4 hours on the NWS) and forecasts up to two weeks in advance (compared to one week for NWS) \cite{wuabt}. This use of the IoT, specifically edge computing, which will be expanded on later, provides a tremendous example of how IoT can be used to enhance Big Data analysis. 
+
+For those that choose to participate in the service, they will purchase a Personal Weather Station (PWS) that allows them to measure temperature, humidity, pressure, rainfall, wind speed and direction via sensors. The major advantage of the PWS comes from its pressure and wind metrics as users can get a better idea of humidity and wind chill, giving a more accurate representation of current conditions. Neither of these are available through the NWS. In the end, this amounts to around 3 billion data points for the Weather Underground model, servicing around 26 billion inquiries a day \cite{ibm}.
+
+\subsubsection{Big Data Solution}
+To process its data in the past, which amounts to multiple terabytes daily, Weather Underground has stored its forecasts, radar data and satellite data using Apache Hadoop and Amazon Web Services \cite{wuinf}. In fact, IBM has stated a large reason for their motivation to have an ownership stake in the company was due to the cloud infrastructure that Weather Underground had built for fielding the massive volume of requests and forecasts it processes daily.  
+
+\subsection{Edge Computing}
+With the Personal Weather Systems, we were able to see how IoT can complement Big Data analysis. This is an example of an emerging technology known as ``edge computing'' that is transforming how the cloud is utilized. 
+
+Edge computing gains its name from how the information being processed by the device.  Prior to this recent innovation, information was gathered, sent to the cloud, processed there, and then the output is pushed back to the device. Namely, it was a centralized process. However, with edge computing, devices are more intelligent in what information they choose to send, providing a much more efficient process. For example, rather than having a camera monitor an area constantly, even when there is no motion, modern IoT cameras have been equipped with motion detection so information is only sent when there is something to actually record. Since this decision and processing is made on the actual device, it is considered to be at the \emph{edge} of the network.
+
+Traditionally, individual devices that were intended to work in conjunction, such as surveillance cameras, were simple in their functionality and storage. Namely, a group of cameras would record individually and send their results back to a central server. However, with improvements in image quality, this can become a Big Data problem very quickly as these cameras are running around the clock collecting footage. In the historical model of a centralized server, this setup eventually creates problems as bandwith and storage issues emerge. These limitations are the problems that edge computing seeks to circumvent and has become a major catalyst in the growth of IoT devices \cite{edge}.   
+
+Circling back to the original project that was undertaken, the application benefited from edge computing through the weather data, but the device itself serves as a great example of why edge computing is even possible in the first place. Specifically, it is possible due to the dramatic decrease in computing costs. For the cost of $\$10$ one can get a single-board computer with 1 GHz and 512 MB RAM through the Raspberry Pi. This type of processing is close to becoming the majority as it is expected that by 2019, $45\%$ of all data collected by IoT devices will be processed at the edge of the network \cite{msft}. 
 
 
-\subsection{Development}
-The project was developed using Python, utilizing the Kivy package for GUI development, the requests and Beautiful Soup packages for scraping websites and Yahoo Weather via the Weather package. 
-\subsection{Project Application to Big Data}
 
 
-This project is the culmination of Big Data analysis conducted by Google through their local news search engine and Yahoo for its weather analytics. 
 
-\subsection{Scalability}
+%Google news factors: https://www.theguardian.com/technology/2013/feb/25/1
 
-%https://blogs.microsoft.com/iot/2017/09/19/five-ways-edge-computing-will-transform-business/
 %https://techcrunch.com/2017/08/03/edge-computing-could-push-the-cloud-to-the-fringe/
 
 
 
-%This innovation, of course, creates a cumulative effect whereby more data gives way to more insight and therefore, new solutions or innovation. 
 
 %The paper should be 2 written pages excluding figures and references. For %your chosen topic, your paper should answer the following questions:
 %Why is this topic important?
@@ -69,7 +98,7 @@ This project is the culmination of Big Data analysis conducted by Google through
 %d) what infrastructure/programs/systems exist for this
  
 \begin{acks}
-The author would like to thank Dr. Gregor von Laszewski and Juliette Zerick for their support and suggestions in exploring this topic.\cite{awsmkt}
+The author would like to thank Professor Dr. Gregor von Laszewski, Juliette Zerick and the other Associate Instructors for their support and suggestions in exploring this topic.
 \end{acks}
 
 \bibliographystyle{ACM-Reference-Format}
