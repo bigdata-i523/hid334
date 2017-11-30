@@ -1,2 +1,2 @@
-compile: 
-  @python test_makefile_run.py
+compile:
+	@python test_makefile_run.py
