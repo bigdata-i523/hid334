@@ -1,5 +1,4 @@
 from kivy.app import App
-from kivy.config import Config
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.scrollview import ScrollView
 from kivy.clock import Clock
@@ -15,23 +14,24 @@ from bs4 import BeautifulSoup
 import webbrowser
 # from rtstock.stock import Stock
 from weathercodes import codes, codes_des
-
-# In the kv file, everything to the right of the colon is pure python
-# for loading python module in kv file, use format of #:  import keyword module_name
+import json
 
 # all_stocks = [Stock('AAPL'),Stock('AMZN'), Stock('GOOG'), Stock('NFLX'), Stock('FB'), Stock('TSLA')]
 
+# Find user location / current data
+send_url = 'http://freegeoip.net/json'
+r = requests.get(send_url)
+j = json.loads(r.text)
+
 weather = Weather()
-location = weather.lookup_by_location('10128')
+location = weather.lookup_by_location(j['zip_code'])
 condition = location.condition()
 forecasts = location.forecast()
 astronomy = location.astronomy()
 
-Config.set('graphics', 'fullscreen', 'auto')
-Config.write()
-
 class WeatherWidget(GridLayout):
 
+	forecast = {}
 	location_label = StringProperty(str(location.title().replace('Yahoo! Weather - ','')))
 	current_temp = StringProperty(str(condition['temp'] + '° ' + condition['text']))
 	hi_lo = StringProperty(str(forecasts[0].low() + 'º / ' + forecasts[0].high() + 'º '))
@@ -142,7 +142,12 @@ class WeatherWidget(GridLayout):
 		if field == 'title':
 			return items[story_num][1]
 		elif field == 'des':
-			return items[story_num][2]
+			if items[story_num][0].hour >= 12: 
+				hour_pub = items[story_num][0].hour - 12
+			else: 
+				hour_pub = items[story_num][0].hour
+			min_pub = items[story_num][0].minute
+			return items[story_num][2] + '['+str(hour_pub)+':'+ str(min_pub)+']'
 		else: 
 			return items[story_num][3]
 
@@ -159,7 +164,12 @@ class WeatherWidget(GridLayout):
 		if field == 'title':
 			return items[story_num][1]
 		elif field == 'des':
-			return items[story_num][2]
+			if items[story_num][0].hour >= 12: 
+				hour_pub = items[story_num][0].hour - 12
+			else: 
+				hour_pub = items[story_num][0].hour
+			min_pub = items[story_num][0].minute
+			return items[story_num][2] + '['+str(hour_pub)+':'+ str(min_pub)+']'
 		else: 
 			return items[story_num][3]
 
