@@ -10,4 +10,4 @@ packages:
 	sudo pip install bs4
 
 program: 
-	python3 program.py
+	python3 project.py
