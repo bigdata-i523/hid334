@@ -2,4 +2,4 @@
 all: fetch
 
 fetch:
-	python test_makefile_run.py
+	python3 test_makefile_run.py
