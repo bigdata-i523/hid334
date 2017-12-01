@@ -7,6 +7,7 @@ packages:
 	sudo apt-get update
 	sudo apt-get install python3-pip
 	sudo apt-get install python-setuptools python-dev build-essential 
+	sudo apt-get install python3-dev
 	sudo easy_install pip
 	pip install --upgrade pip
 	pip3 install python3-weather-api
