@@ -1,5 +1,5 @@
 #!/bin/sh
-all: packages
+all: packages program
 
 packages:
 	sudo apt-get install python3-kivy
