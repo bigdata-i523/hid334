@@ -1,10 +1,9 @@
 #!/usr/bin/python3
-all: program
+all: program packages
 
 packages:
-	pip3 install kivy
 	sudo add-apt-repository ppa:kivy-team/kivy
-	sudo apt-get install python3-kivy
+	sudo apt-get -f install python3-kivy
 	sudo apt-get update
 	sudo apt-get install python3-pip
 	sudo apt-get install python-setuptools python-dev build-essential 
@@ -18,6 +17,7 @@ packages:
 	pip3 install beautifulsoup4
 	pip3 install Cython
 	pip3 install h5py
+	pip3 install kivy
 
 program: 
 	python3 project.py
