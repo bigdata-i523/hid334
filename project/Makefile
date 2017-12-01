@@ -1,3 +1,5 @@
 #!/bin/sh
+all: fetch
+
 fetch:
-	@python test_makefile_run.py
+	python test_makefile_run.py
