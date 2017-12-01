@@ -5,7 +5,7 @@ packages:
 	sudo apt-get install python3-kivy
 	sudo apt-get install python-setuptools python-dev build-essential 
 	sudo easy_install pip
-	sudo pip3 install python3-weather-api
+	pip3 install python3-weather-api
 	sudo pip install requests
 	sudo pip install bs4
 
