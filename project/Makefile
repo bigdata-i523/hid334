@@ -2,6 +2,7 @@
 all: packages program
 
 packages:
+	sudo apt-get install python3-pip
 	sudo apt-get install python3-kivy
 	sudo apt-get install python-setuptools python-dev build-essential 
 	sudo easy_install pip
