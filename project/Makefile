@@ -8,7 +8,7 @@ packages:
 	sudo easy_install pip
 	pip3 install python3-weather-api
 	sudo pip install requests
-	apt-get install python3-bs4
+	pip3 install beautifulsoup4
 
 program: 
 	python3 project.py
