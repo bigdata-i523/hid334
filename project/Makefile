@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/python3
 all: packages program
 
 packages:
