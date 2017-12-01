@@ -8,4 +8,3 @@ packages:
 	sudo pip install weather-api
 	sudo pip install requests
 	sudo pip install bs4
-	sudo pip install json
