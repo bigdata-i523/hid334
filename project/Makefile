@@ -9,6 +9,8 @@ packages:
 	pip3 install python3-weather-api
 	sudo pip install requests
 	pip3 install beautifulsoup4
+	pip3 install Cython
+	pip3 install h5py
 	pip3 install kivy
 
 program: 
