@@ -2,13 +2,11 @@
 all: packages program
 
 packages:
-	sudo add-apt-repository ppa:kivy-team/kivy
 	sudo apt-get install python3-kivy
-	sudo apt-get -f install
-	sudo apt-get update
 	sudo apt-get install python3-pip
 	sudo apt-get install python-setuptools python-dev build-essential 
 	sudo apt-get install python3-dev
+	sudo apt-get install python-kivy python-kivy-examples debhelper python python-all-dev cython libgl1-mesa-dev libgles2-mesa-dev
 	sudo apt-get docutils-doc python3-pygame python-pil-doc python3-pil-dbg ttf-bitstream-vera
 	sudo easy_install pip
 	sudo apt-get -f install
