@@ -2,6 +2,8 @@
 all: packages program
 
 packages:
+	pip3 uninstall kivy
+	pip3 uninstall python3-kivy
 	sudo add-apt-repository ppa:kivy-team/kivy
 	sudo apt-get install python3-kivy
 	sudo apt-get -f install
