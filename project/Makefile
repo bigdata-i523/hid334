@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-all: program packages
+all: packages program
 
 packages:
 	sudo add-apt-repository ppa:kivy-team/kivy
