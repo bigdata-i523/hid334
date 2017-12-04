@@ -1,8 +1,14 @@
 ## i523 Final Project 
 **Analysis of IoT / Big Data and Raspberry Pi IoT Monitor**
 
-To compile Python project that creates Raspberry Pi IoT Monitor, please run `Makefile2` that contains the following commands for the proper dependencies: 
+Packages needed outside of Python's standard library: 
+* Kivy (https://kivy.org/docs/api-kivy.uix.label.html)
+* Weather (https://pypi.python.org/pypi/weather-api)
+* Beautiful Soup (https://pypi.python.org/pypi/beautifulsoup4)
+* Requests (http://docs.python-requests.org/en/master/user/install/)
 
+To compile Python project that creates Raspberry Pi IoT Monitor, please run `Makefile2` from the Linux prompt within the Raspberry Pi that contains the following commands for the proper dependencies: 
+   
     #!/bin/sh
     all: packages program
 
