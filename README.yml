@@ -49,6 +49,7 @@ project:
         Big Data and IoT share a symbiotic relationship with one another that is leading to incredible innovations that were inconceivable just 15 years ago. As a result of this relationship, it has become easier than ever for individuals to customize and monitor various elements of their life if they choose to do so. A project is undertaken to demonstrate how accessible IoT has become to leverage Big Data analysis, how IoT and Big Data are being utilized together in some of the most interesting current use cases and how the technology will need to adapt in coming years.
     author:
         - Peter Russell
+    chapter: TBD
     hid:
         - 334
     status: Dec 04 17 100%
