@@ -32,6 +32,6 @@ To compile Python project that creates Raspberry Pi IoT Monitor, please run `Mak
     program: 
       python3 project.py
 
-The final output should look like the following: 
+The final output should be in the form of the image below. If needed, the user can refresh their location in the input box to the left. 
 
 ![monitor](https://user-images.githubusercontent.com/31293179/33550867-6ee0d3b2-d8bd-11e7-8ad2-4a637fa3faef.png)
