@@ -11,17 +11,17 @@ owner:
 paper1:
     abstract: >
         Executives are constantly looking for ways to find the  pulse of their
-        competitive landscape along with ways to  gauge the sentiment among 
-        their customers. The emergence of  the Big Data movement has 
+        competitive landscape along with ways to  gauge the sentiment among
+        their customers. The emergence of  the Big Data movement has
         given businesses the unique  opportunity to gain perspective on 
         these fronts, in  addition to many others. Amazon Web Services has 
-        placed  itself at the epicenter of this data movement and now 
+        placed  itself at the epicenter of this data movement and now
         offers tools that allows decision makers to quantify their businesses
-        in ways that were previously computationally impossible 
+        in ways that were previously computationally impossible
         or were  prohibitively expensive. As a result,  with Amazon 
-        Web Services, companies now have the ability to 
+        Web Services, companies now have the ability to
         gain deep insights into customer activity, which can be used
-        as real-time feedback or guidance to make future 
+        as real-time feedback or guidance to make future
         experiences more personalized.
     author:
         - Peter Russell
@@ -49,7 +49,15 @@ paper2:
 project:
     title: The Intersection of Big Data and IoT
     abstract: >
-        Big Data and IoT share a symbiotic relationship with one another that is leading to incredible innovations that were inconceivable just 15 years ago. As a result of this relationship, it has become easier than ever for individuals to customize and monitor various elements of their life if they choose to do so. A project is undertaken to demonstrate how accessible IoT has become to leverage Big Data analysis, how IoT and Big Data are being utilized together in some of the most interesting current use cases and how the technology will need to adapt in coming years.
+        Big Data and IoT share a symbiotic relationship with one another
+        that is leading to incredible innovations that were inconceivable 
+        just 15 years ago. As a result of this relationship, it has
+        become easier than ever for individuals to customize and monitor
+        various elements of their life if they choose to do so. A project
+        is undertaken to demonstrate how accessible IoT has become to
+        leverage Big Data analysis, how IoT and Big Data are being utilized
+        together in some of the most interesting current use cases and how
+        the technology will need to adapt in coming years.
     author:
         - Peter Russell
     chapter: TBD
