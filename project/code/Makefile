@@ -3,7 +3,7 @@ all: packages program
 
 packages:
 	sudo add-apt-repository ppa:kivy-team/kivy
-	sudo apt-get install python3-kivy
+	sudo apt-get -f install python3-kivy
 	sudo apt-get install python3-kivy-common
 	sudo apt-get install python3-kivy-bin
 	sudo apt-get install python3-pip
