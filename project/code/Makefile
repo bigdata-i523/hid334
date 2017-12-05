@@ -2,6 +2,7 @@
 all: packages program
 
 packages:
+	sudo apt-get -f install
 	pip3 install python3-weather-api
 	sudo pip install requests
 	pip3 install beautifulsoup4
