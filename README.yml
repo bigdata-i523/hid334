@@ -31,7 +31,7 @@ paper1:
     status: Oct 28 17 100%
     title: AWS in support of Big Data Applications and Analytics
     type: latex
-    url: https://github.com/bigdata-i523/hid334/paper1/paper1.pdf
+    url: https://github.com/bigdata-i523/hid334/paper1/
 paper2:
     review: Nov 6 2017
     abstract: >
@@ -45,7 +45,7 @@ paper2:
     status: Nov 24 17 100%
     title: Advancements in Drone Technology for the US Military
     type: latex
-    url: https://github.com/bigdata-i523/hid334/paper2/paper2.pdf
+    url: https://github.com/bigdata-i523/hid334/paper2/
 project:
     title: The Intersection of Big Data and IoT
     abstract: >
@@ -65,4 +65,5 @@ project:
         - 334
     status: Dec 04 17 100%
     type: project
-    url: https://github.com/bigdata-i523/hid334/project/project.pdf
+    url: https://github.com/bigdata-i523/hid334/project/
+    chapter: Edge Computing
