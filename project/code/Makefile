@@ -2,8 +2,8 @@
 all: packages program
 
 packages:
-	sudo easy_install pip3
-	pip install --upgrade pip3
+	sudo apt-get install python3-pip
+	pip install --upgrade python3-pip
 	sudo add-apt-repository ppa:kivy-team/kivy
 	sudo apt-get -f install python3-kivy
 	sudo apt-get install python3-kivy-common
