@@ -8,6 +8,7 @@ packages:
 	sudo add-apt-repository ppa:kivy-team/kivy
 	sudo apt-get upgrade
 	sudo apt-get install python3-kivy
+	sudo pip3 install git+github.com/kivy/kivy.git@master
 	
 program: 
 	python3 project.py
