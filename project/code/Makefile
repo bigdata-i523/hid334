@@ -26,4 +26,4 @@ packages:
 	sudo apt-get install python3-kivy
 
 program: 
-	python project.py
+	python3 project.py
