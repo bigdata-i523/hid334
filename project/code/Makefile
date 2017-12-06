@@ -20,7 +20,6 @@ packages:
     	libavformat-dev \
     	libavcodec-dev \
     	zlib1g-dev
-	python -m pip install docutils pygments pypiwin32 kivy.deps.sdl2 kivy.deps.glew
 	sudo pip3 install python3-weather-api
 	sudo add-apt-repository ppa:kivy-team/kivy
 	sudo apt-get upgrade
