@@ -12,27 +12,25 @@ from weather import Weather
 import requests
 from bs4 import BeautifulSoup 
 import webbrowser
-# from rtstock.stock import Stock
 from weathercodes import codes, codes_des
 import json
-
-# all_stocks = [Stock('AAPL'),Stock('AMZN'), Stock('GOOG'), Stock('NFLX'), Stock('FB'), Stock('TSLA')]
 
 # Find user location / current data
 send_url = 'http://freegeoip.net/json'
 r = requests.get(send_url)
 j = json.loads(r.text)
 
+# Using that location, generate the weather data
 weather = Weather()
 location = weather.lookup_by_location(j['zip_code'])
 condition = location.condition()
 forecasts = location.forecast()
-print('Check the forecasts',dir(forecasts[0]))
 astronomy = location.astronomy()
 
+# Build the kivy app
 class WeatherWidget(GridLayout):
-
-	forecast = {}
+	
+	# All strings need to be initialized this way so that they can be updated if the user changes their location
 	location_label = StringProperty(str(location.title().replace('Yahoo! Weather - ','')))
 	current_temp = StringProperty(str(condition['temp'] + '° ' + condition['text']))
 	hi_lo = StringProperty(str(forecasts[0].get('low') + 'º / ' + forecasts[0].get('high') + 'º '))
@@ -65,19 +63,20 @@ class WeatherWidget(GridLayout):
 	forecast_hi_lo_4 = StringProperty(str(forecasts[4].get('low') + 'º / ' + forecasts[0].get('high') + 'º '))
 	forecast_hi_lo_5 = StringProperty(str(forecasts[5].get('low') + 'º / ' + forecasts[0].get('high') + 'º '))
 	
+	# Descriptive text for each forecast
 	forecast_des_1 = StringProperty(forecasts[1].get('text'))
 	forecast_des_2 = StringProperty(forecasts[2].get('text'))
 	forecast_des_3 = StringProperty(forecasts[3].get('text'))
 	forecast_des_4 = StringProperty(forecasts[4].get('text'))
 	forecast_des_5 = StringProperty(forecasts[5].get('text'))
-
+	
+	# These will be populated with feeds from local news 
 	local_news_0 = StringProperty('')
 	local_news_1 = StringProperty('')
 	local_news_2 = StringProperty('')
 	local_news_3 = StringProperty('')
 	local_news_4 = StringProperty('')
 	local_news_5 = StringProperty('')
-
 
 	# Initialize the settings for the clock
 	TimeSeconds = StringProperty('')
@@ -130,14 +129,6 @@ class WeatherWidget(GridLayout):
 		items = self.pull_site('http://feeds.feedburner.com/brainyquote/QUOTEBR')
 		return items[0].description.text + '  -' +items[0].title.text
 
-	def top_world_news_title(self, story_num):
-		items = self.pull_site_sorted('http://www.wsj.com/xml/rss/3_7085.xml')
-		return items[story_num][1]
-
-	def top_world_news_story(self, story_num):
-		items = self.pull_site_sorted('http://www.wsj.com/xml/rss/3_7085.xml')
-		return items[story_num][2]
-
 	def top_world(self, story_num, field):
 		items = self.pull_site_sorted('http://www.wsj.com/xml/rss/3_7085.xml')
 		if field == 'title':
@@ -152,14 +143,6 @@ class WeatherWidget(GridLayout):
 		else: 
 			return items[story_num][3]
 
-	def top_business_title(self, story_num):
-		items = self.pull_site_sorted('http://www.wsj.com/xml/rss/3_7014.xml')
-		return items[story_num][1]
-
-	def top_business_story(self, story_num):
-		items = self.pull_site_sorted('http://www.wsj.com/xml/rss/3_7014.xml')
-		return items[story_num][2]
-
 	def top_business(self, story_num, field):
 		items = self.pull_site_sorted('http://www.wsj.com/xml/rss/3_7014.xml')
 		if field == 'title':
@@ -173,12 +156,6 @@ class WeatherWidget(GridLayout):
 			return items[story_num][2] + '['+str(hour_pub)+':'+ str(min_pub)+']'
 		else: 
 			return items[story_num][3]
-
-	# def stock_symbol(self, stock):
-	# 	return Stock(stock).get_ticker()
-
-	# def stock_last_price(self, stock):
-	# 	return Stock(stock).get_latest_price()
 
 	def location_update(self):
 		try: 
@@ -228,12 +205,14 @@ class WeatherWidget(GridLayout):
 		self.location_label = current_location(location)
 		self.current_temp = current_temperature(condition)
 		self.hi_lo = high_low_temp(0, forecasts)
-
+		
+		# These codes are pulled in from the weather python file that map the code to the image
 		all_codes = codes
 		code_from_yahoo = int(condition['code'])
 		mapped_image = all_codes.get(code_from_yahoo)[1]
 		self.curr_image = mapped_image
-
+		
+		# This is where all of the components initialized in the beginning of the program are updated
 		self.forecast_day_1 = datetime.strptime(forecasts[1].get('date'), '%d %b %Y').strftime('%a')
 		self.forecast_img_1 = forecast_image(1, forecasts)
 		self.forecast_des_1 = forecast_des(1, forecasts)
@@ -265,7 +244,9 @@ class WeatherWidget(GridLayout):
 		self.local_news_3 = get_google_local_rss_feed(location, 3)
 		self.local_news_4 = get_google_local_rss_feed(location, 4)
 		self.local_news_5 = get_google_local_rss_feed(location, 5)
-
+	
+	# If the user wants to have transit alerts instead, this would be the way to parse the data. Kivy file would
+	# need to be adjusted in conjunction with this. 
 	# def transit_alerts(self):
 	# 	items = self.pull_site('http://www.njtransit.com/rss/RailAdvisories_feed.xml')
 	# 	relevant_alerts = []
@@ -288,6 +269,7 @@ class WeatherWidget(GridLayout):
 		items = self.pull_site('https://www.scorespro.com/rss2/live-football.xml')
 		all_games = []
 		for item in items:
+			# Uncomment the if statement below if the user wants college football included
 			# if ('USA-FBS') in item.title.text:
 				# all_games.append(item.title.text.replace('American Football #Livescore @ScoresPro: (USA-FBS) #','').replace('#', ''))
 			if ('USA-NFL') in item.title.text:
@@ -299,6 +281,7 @@ class WeatherWidget(GridLayout):
 class DailyViewApp(App):
     def build(self):
     	weather_widget = WeatherWidget()
+	# Refresh the app every second
     	Clock.schedule_interval(weather_widget.update, 1)
     	return weather_widget
 
