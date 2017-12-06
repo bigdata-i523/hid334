@@ -197,6 +197,7 @@ class WeatherWidget(GridLayout):
 			location = location.title().replace('Yahoo! Weather for ','').replace(', ','%20').replace(' ','%20')
 			full_url = main_url + location
 			all_stories = []
+			print('This is the full url:', full_url)
 			for story in self.pull_site(full_url)[1:]:
 				all_stories.append(story.title.text)
 			return all_stories[story_num]
