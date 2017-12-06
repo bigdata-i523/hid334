@@ -135,7 +135,7 @@ class WeatherWidget(GridLayout):
 			return items[story_num][1]
 		elif field == 'des':
 			if items[story_num][0].hour >= 12: 
-				hour_pub = items[story_num][0].hour - 12
+				hour_pub =  24 - items[story_num][0].hour
 			else: 
 				hour_pub = items[story_num][0].hour
 			min_pub = items[story_num][0].minute
@@ -149,7 +149,7 @@ class WeatherWidget(GridLayout):
 			return items[story_num][1]
 		elif field == 'des':
 			if items[story_num][0].hour >= 12: 
-				hour_pub = items[story_num][0].hour - 12
+				hour_pub = 24 - items[story_num][0].hour
 			else: 
 				hour_pub = items[story_num][0].hour
 			min_pub = items[story_num][0].minute
