@@ -27,7 +27,7 @@ weather = Weather()
 location = weather.lookup_by_location(j['zip_code'])
 condition = location.condition()
 forecasts = location.forecast()
-print('This is the forecast available:',dir(forecasts))
+print(dir(forecasts[0]))
 astronomy = location.astronomy()
 
 class WeatherWidget(GridLayout):
