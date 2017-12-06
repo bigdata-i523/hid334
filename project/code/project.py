@@ -1,6 +1,3 @@
-import os
-os.environ['KIVY_GL_BACKEND'] = 'sdl2'
-
 from kivy.app import App
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.scrollview import ScrollView
