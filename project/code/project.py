@@ -37,11 +37,11 @@ class WeatherWidget(GridLayout):
 	current_temp = StringProperty(str(condition['temp'] + '° ' + condition['text']))
 	hi_lo = StringProperty(str(forecasts[0].get('low') + 'º / ' + forecasts[0].get('high') + 'º '))
 
-	forecast_day_1 = StringProperty(str(datetime.strptime(forecasts[1].date(), '%d %b %Y').strftime('%a')))
-	forecast_day_2 = StringProperty(str(datetime.strptime(forecasts[2].date(), '%d %b %Y').strftime('%a')))
-	forecast_day_3 = StringProperty(str(datetime.strptime(forecasts[3].date(), '%d %b %Y').strftime('%a')))
-	forecast_day_4 = StringProperty(str(datetime.strptime(forecasts[4].date(), '%d %b %Y').strftime('%a')))
-	forecast_day_5 = StringProperty(str(datetime.strptime(forecasts[5].date(), '%d %b %Y').strftime('%a')))
+	forecast_day_1 = StringProperty(str(datetime.strptime(forecasts[1].get('date'), '%d %b %Y').strftime('%a')))
+	forecast_day_2 = StringProperty(str(datetime.strptime(forecasts[2].get('date'), '%d %b %Y').strftime('%a')))
+	forecast_day_3 = StringProperty(str(datetime.strptime(forecasts[3].get('date'), '%d %b %Y').strftime('%a')))
+	forecast_day_4 = StringProperty(str(datetime.strptime(forecasts[4].get('date'), '%d %b %Y').strftime('%a')))
+	forecast_day_5 = StringProperty(str(datetime.strptime(forecasts[5].get('date'), '%d %b %Y').strftime('%a')))
 
 	# Pull in the current weather image - uses a numeric code 
 	all_codes = codes
@@ -52,24 +52,24 @@ class WeatherWidget(GridLayout):
 	# Load in the initial forecast images - these use a description and not a code so they need to be done differently
 	all_des = codes_des
 
-	forecast_img_1 = ObjectProperty(all_des.get(forecasts[1].text().lower()))
-	forecast_img_2 = ObjectProperty(all_des.get(forecasts[2].text().lower()))
-	forecast_img_3 = ObjectProperty(all_des.get(forecasts[3].text().lower()))
-	forecast_img_4 = ObjectProperty(all_des.get(forecasts[4].text().lower()))
-	forecast_img_5 = ObjectProperty(all_des.get(forecasts[5].text().lower()))
+	forecast_img_1 = ObjectProperty(all_des.get(forecasts[1].get('text').lower()))
+	forecast_img_2 = ObjectProperty(all_des.get(forecasts[2].get('text').lower()))
+	forecast_img_3 = ObjectProperty(all_des.get(forecasts[3].get('text').lower()))
+	forecast_img_4 = ObjectProperty(all_des.get(forecasts[4].get('text').lower()))
+	forecast_img_5 = ObjectProperty(all_des.get(forecasts[5].get('text').lower()))
 
 	# HiLo for each forecast
-	forecast_hi_lo_1 = StringProperty(str(forecasts[1].low() + 'º / ' + forecasts[0].high() + 'º '))
-	forecast_hi_lo_2 = StringProperty(str(forecasts[2].low() + 'º / ' + forecasts[0].high() + 'º '))
-	forecast_hi_lo_3 = StringProperty(str(forecasts[3].low() + 'º / ' + forecasts[0].high() + 'º '))
-	forecast_hi_lo_4 = StringProperty(str(forecasts[4].low() + 'º / ' + forecasts[0].high() + 'º '))
-	forecast_hi_lo_5 = StringProperty(str(forecasts[5].low() + 'º / ' + forecasts[0].high() + 'º '))
+	forecast_hi_lo_1 = StringProperty(str(forecasts[1].get('low') + 'º / ' + forecasts[0].get('high') + 'º '))
+	forecast_hi_lo_2 = StringProperty(str(forecasts[2].get('low') + 'º / ' + forecasts[0].get('high') + 'º '))
+	forecast_hi_lo_3 = StringProperty(str(forecasts[3].get('low') + 'º / ' + forecasts[0].get('high') + 'º '))
+	forecast_hi_lo_4 = StringProperty(str(forecasts[4].get('low') + 'º / ' + forecasts[0].get('high') + 'º '))
+	forecast_hi_lo_5 = StringProperty(str(forecasts[5].get('low') + 'º / ' + forecasts[0].get('high') + 'º '))
 	
-	forecast_des_1 = StringProperty(forecasts[1].text())
-	forecast_des_2 = StringProperty(forecasts[2].text())
-	forecast_des_3 = StringProperty(forecasts[3].text())
-	forecast_des_4 = StringProperty(forecasts[4].text())
-	forecast_des_5 = StringProperty(forecasts[5].text())
+	forecast_des_1 = StringProperty(forecasts[1].get('text'))
+	forecast_des_2 = StringProperty(forecasts[2].get('text'))
+	forecast_des_3 = StringProperty(forecasts[3].get('text'))
+	forecast_des_4 = StringProperty(forecasts[4].get('text'))
+	forecast_des_5 = StringProperty(forecasts[5].get('text'))
 
 	local_news_0 = StringProperty('')
 	local_news_1 = StringProperty('')
@@ -201,23 +201,23 @@ class WeatherWidget(GridLayout):
 
 		def forecast_image(day_num, forecasts):
 			all_codes = codes_des
-			if all_codes.get(forecasts[day_num].text().lower()) is None:  
+			if all_codes.get(forecasts[day_num].get('text').lower()) is None:  
 				return 'unavailable.png'
-			return all_codes.get(forecasts[day_num].text().lower())
+			return all_codes.get(forecasts[day_num].get('text').lower())
 
 			# day_num is an integer where 0 = today
 		def high_low_temp(day_num, forecasts):
-			return forecasts[day_num].low() + 'º / ' + forecasts[day_num].high() + 'º '
+			return forecasts[day_num].get('low') + 'º / ' + forecasts[day_num].get('high') + 'º '
 
 		def forecast_day(day_num, forecasts):
-			return datetime.strptime(forecasts[day_num].date(), '%d %b %Y').strftime('%a')
+			return datetime.strptime(forecasts[day_num].get('date'), '%d %b %Y').strftime('%a')
 
 		def forecast_des(day_num, forecasts):
-			return forecasts[day_num].text()
+			return forecasts[day_num].get('text')
 
 		def get_google_local_rss_feed(location, story_num):
 			main_url = 'https://news.google.com/news/section?output=rss&q='
-			location = location.description().replace('Yahoo! Weather for ','').replace(', ','%20').replace(' ','%20')
+			location = location.get('description').replace('Yahoo! Weather for ','').replace(', ','%20').replace(' ','%20')
 			full_url = main_url + location
 			all_stories = []
 			for story in self.pull_site(full_url)[1:]:
@@ -234,27 +234,27 @@ class WeatherWidget(GridLayout):
 		mapped_image = all_codes.get(code_from_yahoo)[1]
 		self.curr_image = mapped_image
 
-		self.forecast_day_1 = datetime.strptime(forecasts[1].date(), '%d %b %Y').strftime('%a')
+		self.forecast_day_1 = datetime.strptime(forecasts[1].get('date'), '%d %b %Y').strftime('%a')
 		self.forecast_img_1 = forecast_image(1, forecasts)
 		self.forecast_des_1 = forecast_des(1, forecasts)
 		self.forecast_hi_lo_1 = high_low_temp(1, forecasts)
 
-		self.forecast_day_2 = datetime.strptime(forecasts[2].date(), '%d %b %Y').strftime('%a')
+		self.forecast_day_2 = datetime.strptime(forecasts[2].get('date'), '%d %b %Y').strftime('%a')
 		self.forecast_img_2 = forecast_image(2, forecasts)
 		self.forecast_des_2 = forecast_des(2, forecasts)
 		self.forecast_hi_lo_2 = high_low_temp(2, forecasts)
 
-		self.forecast_day_3 = datetime.strptime(forecasts[3].date(), '%d %b %Y').strftime('%a')
+		self.forecast_day_3 = datetime.strptime(forecasts[3].get('date'), '%d %b %Y').strftime('%a')
 		self.forecast_img_3 = forecast_image(3, forecasts)
 		self.forecast_des_3 = forecast_des(3, forecasts)
 		self.forecast_hi_lo_3 = high_low_temp(3, forecasts)
 
-		self.forecast_day_4 = datetime.strptime(forecasts[4].date(), '%d %b %Y').strftime('%a')
+		self.forecast_day_4 = datetime.strptime(forecasts[4].get('date'), '%d %b %Y').strftime('%a')
 		self.forecast_img_4 = forecast_image(4, forecasts)
 		self.forecast_des_4 = str(forecast_des(4, forecasts))
 		self.forecast_hi_lo_4 = high_low_temp(4, forecasts)
 
-		self.forecast_day_5 = datetime.strptime(forecasts[5].date(), '%d %b %Y').strftime('%a')
+		self.forecast_day_5 = datetime.strptime(forecasts[5].get('date'), '%d %b %Y').strftime('%a')
 		self.forecast_img_5 = forecast_image(5, forecasts)
 		self.forecast_des_5 = str(forecast_des(5, forecasts))
 		self.forecast_hi_lo_5 = high_low_temp(5, forecasts)
