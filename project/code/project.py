@@ -112,7 +112,7 @@ class WeatherWidget(GridLayout):
 
 	def pull_site(self, site):
 		url = site 
-		response = requests.get(url)
+		response = requests.get(url, verify = False)
 		soup = BeautifulSoup(response.content, features = 'xml')
 		items = soup.findAll('item')
 		return items
