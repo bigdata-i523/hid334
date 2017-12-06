@@ -4,6 +4,9 @@ all: packages program
 packages:
 	sudo apt-get -f install
 	sudo apt-get install python3-pip
+	sudo apt-get install cython3 python3-dev
+	sudo apt-get install libsdl2-dev libsdl2-ttf-dev libsdl2-image-dev libsdl2-mixer-dev
+	pip3 install git+https://github.com/kivy/kivy.git@master
 	sudo apt-get install -y \
     	python-pip \
     	build-essential \
@@ -11,10 +14,6 @@ packages:
     	python \
     	python-dev \
     	ffmpeg \
-    	libsdl2-dev \
-    	libsdl2-image-dev \
-    	libsdl2-mixer-dev \
-    	libsdl2-ttf-dev \
     	libportmidi-dev \
     	libswscale-dev \
     	libavformat-dev \
@@ -26,7 +25,6 @@ packages:
 	sudo add-apt-repository ppa:kivy-team/kivy
 	sudo apt-get upgrade
 	sudo apt-get install python-kivy
-	sudo apt-get install libsdl2-2.0-0 libsdl2-image-2.0-0 libsdl2-mixer-2.0-0 libsdl2-ttf-2.0-0
-
+	
 program: 
 	python3 project.py
