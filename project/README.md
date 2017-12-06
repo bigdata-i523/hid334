@@ -10,7 +10,7 @@ For best results, the application should be maximized for best spacing.
 ## Required Packages
 This application should require minimal user intervention to get up and running. In the `code` folder (https://github.com/bigdata-i523/hid334/tree/master/project/code), there is a `Makefile` that the user can run from the command line to install the necessary dependencies. The setup assumes a minimally set up Raspberry Pi to execute the program. However, the user should have `sudo` installed to run the make file. If this has not yet been done, please follow the few steps here (https://www.privateinternetaccess.com/forum/discussion/18063/debian-8-1-0-jessie-sudo-fix-not-installed-by-default) to install `sudo` before running the `Makefile`. 
 
-**Please try to be patient in running the `Makefile` as several dependencies need to be installed for the GUI package, Kivy, to run properly. Additionally, please bear with it as the application loads as a whole and individual websites. ** 
+**Please try to be patient in running the `Makefile` as several dependencies need to be installed for the GUI package, Kivy, to run properly. Additionally, please bear with it as the application loads as a whole, individual websites and when refreshing locations. ** 
 
 ### References for Required Packages
 Packages needed outside of Python's standard library: 
@@ -20,9 +20,9 @@ Packages needed outside of Python's standard library:
 * Requests (http://docs.python-requests.org/en/master/user/install/)
 ## Testing
 This application was tested using a Virtual Machine with Debian since this is the operating system that Raspbian is based off of (Raspberry Pi's operating system). 
-
+![debian_output](https://user-images.githubusercontent.com/31293179/33682599-08d705f2-da96-11e7-8886-754a36cd2e9d.PNG)
 
 ## Final Output
 The final result should look like the following based off the user's own location: 
+![output](https://user-images.githubusercontent.com/31293179/33682700-51d3829e-da96-11e7-86b0-f3306b0ed311.PNG)
 
-![monitor](https://user-images.githubusercontent.com/31293179/33550867-6ee0d3b2-d8bd-11e7-8ad2-4a637fa3faef.png)
