@@ -25,9 +25,9 @@ j = json.loads(r.text)
 
 weather = Weather()
 location = weather.lookup_by_location(j['zip_code'])
-print('This is the location:',location)
 condition = location.condition()
 forecasts = location.forecast()
+print('This is the forecast available:',dir(forecasts))
 astronomy = location.astronomy()
 
 class WeatherWidget(GridLayout):
