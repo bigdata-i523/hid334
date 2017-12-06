@@ -1,37 +1,21 @@
-## i523 Final Project 
-**Analysis of IoT / Big Data and Raspberry Pi IoT Monitor**
+# i523 Final Project 
+Peter Russell
+## Topic 
+The goal of this project was to explore the relationship between IoT and Big Data through one of the most popular and accessible IoT devices, the Raspberry Pi 3. This project builds an application for the Raspberry Pi that allows the user to see current weather, forecasts, local news, a quote of the day, top business/political news and sports scores. The user has the ability to update if they desire to do so. 
 
+## Required Packages
+This application should require minimal user intervention to get up and running. In the `code` folder (https://github.com/bigdata-i523/hid334/tree/master/project/code), there is a `Makefile` that the user can run from the command line to install the necessary dependencies. The setup assumes a minimally set up Raspberry Pi to execute the program. However, the user should have `sudo` installed to run the make file. If this has not yet been done, please follow the few steps here (https://www.privateinternetaccess.com/forum/discussion/18063/debian-8-1-0-jessie-sudo-fix-not-installed-by-default) to install `sudo` before running the `Makefile`. 
+
+**Please try to be patient in running the `Makefile` as several dependencies need to be installed for the GUI package, Kivy, to run properly.**
+
+### References for Required Packages:
 Packages needed outside of Python's standard library: 
 * Kivy (https://kivy.org/docs/api-kivy.uix.label.html)
 * Weather (https://pypi.python.org/pypi/weather-api)
 * Beautiful Soup (https://pypi.python.org/pypi/beautifulsoup4)
 * Requests (http://docs.python-requests.org/en/master/user/install/)
 
-To compile Python project that creates Raspberry Pi IoT Monitor, please run `Makefile2` from the Linux prompt within the Raspberry Pi that contains the following commands for the proper dependencies: 
-   
-    #!/bin/sh
-    all: packages program
-
-    packages:
-      sudo apt-get install python3-kivy
-      sudo apt-get install python3-pip
-      sudo apt-get install python-setuptools python-dev build-essential 
-      sudo apt-get install python3-dev
-      sudo apt-get install python-kivy python-kivy-examples debhelper python python-all-dev cython libgl1-mesa-dev libgles2-mesa-dev
-      sudo apt-get docutils-doc python3-pygame python-pil-doc python3-pil-dbg ttf-bitstream-vera
-      sudo easy_install pip
-      sudo apt-get -f install
-      pip install --upgrade pip
-      pip3 install python3-weather-api
-      sudo pip install requests
-      pip3 install beautifulsoup4
-      pip3 install Cython
-      pip3 install h5py
-      pip3 install kivy
-
-    program: 
-      python3 project.py
-
-The final output should be in the form of the image below. If needed, the user can refresh their location in the input box to the left. 
+## Final Output: 
+The final result should look like the following based off the user's own location: 
 
 ![monitor](https://user-images.githubusercontent.com/31293179/33550867-6ee0d3b2-d8bd-11e7-8ad2-4a637fa3faef.png)
