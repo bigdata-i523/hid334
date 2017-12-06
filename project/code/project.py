@@ -35,7 +35,7 @@ class WeatherWidget(GridLayout):
 	forecast = {}
 	location_label = StringProperty(str(location.title().replace('Yahoo! Weather - ','')))
 	current_temp = StringProperty(str(condition['temp'] + '° ' + condition['text']))
-	hi_lo = StringProperty(str(forecasts[0].low() + 'º / ' + forecasts[0].high() + 'º '))
+	hi_lo = StringProperty(str(forecasts[0].get('low') + 'º / ' + forecasts[0].get('high') + 'º '))
 
 	forecast_day_1 = StringProperty(str(datetime.strptime(forecasts[1].date(), '%d %b %Y').strftime('%a')))
 	forecast_day_2 = StringProperty(str(datetime.strptime(forecasts[2].date(), '%d %b %Y').strftime('%a')))
