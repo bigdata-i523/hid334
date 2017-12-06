@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env python
 all: packages program
 
 packages:
