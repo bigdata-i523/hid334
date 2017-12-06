@@ -40,6 +40,8 @@
 * 2017-11-24: Project: Modified the news feed so the most recent stories from the WSJ are displayed first (rather than RSS feed order), Made news story title clickable so user can navigate directly to the website for the full article, added NFL and NBA scores
 * 2017-11-27: Project: Added text input field to allow user to change their location (updates weather, forecasts and local news stories), replaced NJ Transit alerts with local news feed
 * 2017-11-28: Project: Auto-maximize app when running
+* 2017-11-30: Project: Work on make file, organize GitHub, figure out why app will run on Windows, but not Linux
+
 
 # Writing
 * 2017-09-07: Chose paper 1 topic
@@ -51,6 +53,7 @@
 * 2017-10-29: Researched and organized outline for paper 2 - began writing introduction
 * 2017-10-30: Added additional case studies to paper 2 
 * 2017-11-03: Completed Paper 2
+* 2017-11-29: Project: Added use cases
 
 # Location
 * Address: Metuchen, New Jersey
