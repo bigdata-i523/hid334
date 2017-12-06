@@ -194,7 +194,7 @@ class WeatherWidget(GridLayout):
 
 		def get_google_local_rss_feed(location, story_num):
 			main_url = 'https://news.google.com/news/section?output=rss&q='
-			location = location.get('description').replace('Yahoo! Weather for ','').replace(', ','%20').replace(' ','%20')
+			location = location.title().replace('Yahoo! Weather for ','').replace(', ','%20').replace(' ','%20')
 			full_url = main_url + location
 			all_stories = []
 			for story in self.pull_site(full_url)[1:]:
