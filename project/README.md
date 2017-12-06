@@ -10,7 +10,7 @@ For best results, the application should be maximized for best spacing.
 ## Required Packages
 This application should require minimal user intervention to get up and running. In the `code` folder (https://github.com/bigdata-i523/hid334/tree/master/project/code), there is a `Makefile` that the user can run from the command line to install the necessary dependencies. The setup assumes a minimally set up Raspberry Pi to execute the program. However, the user should have `sudo` installed to run the make file. If this has not yet been done, please follow the few steps here (https://www.privateinternetaccess.com/forum/discussion/18063/debian-8-1-0-jessie-sudo-fix-not-installed-by-default) to install `sudo` before running the `Makefile`. 
 
-**Please try to be patient in running the `Makefile` as several dependencies need to be installed for the GUI package, Kivy, to run properly.**
+**Please try to be patient in running the `Makefile` as several dependencies need to be installed for the GUI package, Kivy, to run properly. Additionally, please bear with it as the application loads as a whole and individual websites. ** 
 
 ### References for Required Packages
 Packages needed outside of Python's standard library: 
