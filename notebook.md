@@ -7,6 +7,7 @@
 * 2017-11-06 Meeting: Online session to discuss paper compilation via commandline in Windows
 * 2017-11-13 Meeting: Online session (advice from Juliette on project)
 * 2017-11-27 Meeting: Online session (project specific advice with Prof. and Juliette, tutorial on how to make a Makefile)
+* 2017-12-03 Meeting: Online session (feedback on project, Makefile advice)
 
 # Logistic
 * 2017-08-23: Created GitHub, Chameleon and FuturesSystems Portal accounts
