@@ -5,11 +5,11 @@ packages:
 	sudo apt-get -f install
 	sudo apt-get install python3-pip
 	sudo apt-get install -y \
-    	python3-pip \
+    	python-pip \
     	build-essential \
     	git \
-    	python3 \
-    	python3-dev \
+    	python \
+    	python-dev \
     	ffmpeg \
     	libsdl2-dev \
     	libsdl2-image-dev \
@@ -26,4 +26,4 @@ packages:
 	sudo apt-get install python3-kivy
 
 program: 
-	python3 project.py
+	python project.py
