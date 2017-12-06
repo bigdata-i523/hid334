@@ -286,4 +286,4 @@ class DailyViewApp(App):
     	return weather_widget
 
 if __name__ == '__main__':
-    DailyViewApp().run()
+    DailyViewApp(kv_file = 'DailyView.kv').run()
