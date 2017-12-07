@@ -31,7 +31,8 @@ astronomy = location.astronomy()
 class WeatherWidget(GridLayout):
 	
 	# All strings need to be initialized this way so that they can be updated if the user changes their location
-	location_label = StringProperty(str(location.title().replace('Yahoo! Weather - ','')))
+	user_location = str(location.title().replace('Yahoo! Weather - ',''))
+	location_label = StringProperty(user_location)
 	current_temp = StringProperty(str(condition['temp'] + '° ' + condition['text']))
 	hi_lo = StringProperty(str(forecasts[0].get('low') + 'º / ' + forecasts[0].get('high') + 'º '))
 
@@ -86,12 +87,12 @@ class WeatherWidget(GridLayout):
 		return all_stories[story_num]
 	
 	# These will be populated with feeds from local news 
-	local_news_0 = StringProperty(starting_local(location_label,0))
-	local_news_1 = StringProperty(starting_local(location_label,1))
-	local_news_2 = StringProperty(starting_local(location_label,2))
-	local_news_3 = StringProperty(starting_local(location_label,3))
-	local_news_4 = StringProperty(starting_local(location_label,4))
-	local_news_5 = StringProperty(starting_local(location_label,5))
+	local_news_0 = StringProperty(starting_local(user_location,0))
+	local_news_1 = StringProperty(starting_local(user_location,1))
+	local_news_2 = StringProperty(starting_local(user_location,2))
+	local_news_3 = StringProperty(starting_local(user_location,3))
+	local_news_4 = StringProperty(starting_local(user_location,4))
+	local_news_5 = StringProperty(starting_local(user_location,5))
 
 	# Initialize the settings for the clock
 	TimeSeconds = StringProperty('')
