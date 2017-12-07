@@ -26,5 +26,6 @@ This application was tested using a Virtual Machine with Debian since this is th
 
 ## Final Output
 The final result should look like the following based off the user's own location: 
-![output](https://user-images.githubusercontent.com/31293179/33682700-51d3829e-da96-11e7-86b0-f3306b0ed311.PNG)
+![capture](https://user-images.githubusercontent.com/31293179/33727272-83dbe3d0-db45-11e7-8f6e-0a71ad287a52.PNG)
+
 
