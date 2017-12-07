@@ -75,7 +75,10 @@ class WeatherWidget(GridLayout):
 		location = str(location).replace(', ','%20').replace(' ','%20')
 		full_url = main_url + location
 		all_stories = []
-		for story in self.pull_site(full_url)[1:]:
+		response = requests.get(full_url, verify = False)
+		soup = BeautifulSoup(response.content, features = 'xml')
+		items = soup.findAll('item')
+		for story in items[1:]:
 			all_stories.append(story.title.text)
 		return all_stories[story_num]
 	
