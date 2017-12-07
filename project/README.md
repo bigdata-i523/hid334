@@ -22,7 +22,7 @@ Packages needed outside of Python's standard library:
 * Requests (http://docs.python-requests.org/en/master/user/install/)
 ## Testing
 This application was tested using a Virtual Machine with Debian since this is the operating system that Raspbian is based off of (Raspberry Pi's operating system). 
-![debian_output](https://user-images.githubusercontent.com/31293179/33682599-08d705f2-da96-11e7-8886-754a36cd2e9d.PNG)
+![capture2](https://user-images.githubusercontent.com/31293179/33727357-bebea3e8-db45-11e7-822a-13a2b5568301.PNG)
 
 ## Final Output
 The final result should look like the following based off the user's own location: 
