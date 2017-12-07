@@ -225,13 +225,13 @@
                 size_hint: (1, 0.55)
                 TextInput: 
                     id: _zip_code_input
-                    hint_text: 'New Zip or City/State Here'
+                    hint_text: 'New Location'
                     height: self.minimum_height
                     italic: True
                     font_size: 10
                     on_double_tap: _zip_code_input.text =''
                 Button: 
-                    text: 'Refresh Location'
+                    text: 'Refresh'
                     font_size: 10
                     on_press: root.location_update()
         Label: 
