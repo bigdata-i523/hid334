@@ -4,5 +4,5 @@ from PIL import Image
 
 # image = Image.open(os.path.join(parentDirectory, 'WeatherIcons', 'Code32.PNG'))
 
-image = Image.open('./images/testimage.png')
+image = Image.open('../testimages/testimage.png')
 image.show()
