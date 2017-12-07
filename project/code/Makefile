@@ -19,6 +19,7 @@ packages:
     	libavformat-dev \
     	libavcodec-dev \
     	zlib1g-dev
+	sudo pip3 install lxml
 	sudo pip3 install python3-weather-api
 	sudo pip3 install bs4
 	sudo pip3 install requests
