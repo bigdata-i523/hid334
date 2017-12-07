@@ -70,13 +70,22 @@ class WeatherWidget(GridLayout):
 	forecast_des_4 = StringProperty(forecasts[4].get('text'))
 	forecast_des_5 = StringProperty(forecasts[5].get('text'))
 	
+	def starting_local(location, story_num):
+		main_url = 'https://news.google.com/news/section?output=rss&q='
+		location = str(location).replace(', ','%20').replace(' ','%20')
+		full_url = main_url + location
+		all_stories = []
+		for story in self.pull_site(full_url)[1:]:
+			all_stories.append(story.title.text)
+		return all_stories[story_num]
+	
 	# These will be populated with feeds from local news 
-	local_news_0 = StringProperty('')
-	local_news_1 = StringProperty('')
-	local_news_2 = StringProperty('')
-	local_news_3 = StringProperty('')
-	local_news_4 = StringProperty('')
-	local_news_5 = StringProperty('')
+	local_news_0 = StringProperty(starting_local(location_label,0))
+	local_news_1 = StringProperty(starting_local(location_label,1))
+	local_news_2 = StringProperty(starting_local(location_label,2))
+	local_news_3 = StringProperty(starting_local(location_label,3))
+	local_news_4 = StringProperty(starting_local(location_label,4))
+	local_news_5 = StringProperty(starting_local(location_label,5))
 
 	# Initialize the settings for the clock
 	TimeSeconds = StringProperty('')
