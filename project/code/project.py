@@ -78,6 +78,9 @@ class WeatherWidget(GridLayout):
 		response = requests.get(full_url, verify = False)
 		soup = BeautifulSoup(response.content, features = 'xml')
 		items = soup.findAll('item')
+		
+		print('Full URL Used:', full_url)
+		
 		for story in items[1:]:
 			all_stories.append(story.title.text)
 		return all_stories[story_num]
