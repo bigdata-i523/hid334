@@ -30,7 +30,6 @@ paper1:
         - 334
     status: Oct 28 17 100%
     title: AWS in support of Big Data Applications and Analytics
-    type: latex
     url: https://github.com/bigdata-i523/hid334/paper1/
 paper2:
     review: Nov 6 2017
@@ -44,7 +43,6 @@ paper2:
         - 334
     status: Nov 24 17 100%
     title: Advancements in Drone Technology for the US Military
-    type: latex
     url: https://github.com/bigdata-i523/hid334/paper2/
 project:
     title: The Intersection of Big Data and IoT
